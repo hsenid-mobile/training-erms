@@ -12,13 +12,3 @@ gen
 
 erms/cvm/migrations
 virtualenv
-
-.project
-.pydevproject
-.settings/*
-*.pyc
-*.sqlite3
-*.db
-*.log
-*.log.*
-*.pid
