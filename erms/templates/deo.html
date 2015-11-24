@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <!-- Navigation Bar-->
+    <nav role="navigation" class="navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="#" class="navbar-brand">Brand</a>
+    </div>
+    <!-- Collection of nav links, forms, and other content for toggling -->
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Profiles</a></li>
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Messages <b class="caret"></b></a>
+                <ul role="menu" class="dropdown-menu">
+                    <li><a href="#">Inbox</a></li>
+                    <li><a href="#">Drafts</a></li>
+                    <li><a href="#">Sent Items</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Trash</a></li>
+                </ul>
+            </li>
+        </ul>
+        <form role="search" class="navbar-form navbar-left">
+            <div class="form-group">
+                <input type="text" placeholder="Search" class="form-control">
+            </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Login</a></li>
+        </ul>
+         <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+    <div class="container">
+        <form class="form-horizontal" id="form_members" role="form">
+            <legend>Person</legend>
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-2">First Name</label>
+                <div class="col-sm-4">
+    	            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name">
+                </div>
+            <label for="lastname" class="col-sm-2">Last Name</label>
+            <div class="col-sm-4">
+    	        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name">
+            </div>
+        </div>
+            <div class="form-group">
+                <label for="gender" class="col-sm-2">Gender</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                    <input type="radio" name="gender" id="male" value="male"> Male
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="gender" id="female" value="female"> Female
+                    </label>
+                    </div>
+                <label for="dob" class="col-sm-2">Date of Birth</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" name="dob" id="dob" placeholder="mm/dd/yyyy">
+                </div>
+            </div>
+            <legend>Address</legend>
+                <div class="form-group">
+                    <label for="address" class="col-sm-2">Address</label>
+                    <div class="col-sm-4">
+                    <input type="text" class="form-control" name="address" id="address" placeholder="Street + No">
+                    </div>
+                    <label for="city" class="col-sm-2">City</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" list="cities" name="city" id="city" placeholder="City">
+                <datalist id="cities">
+                    <option value="Colombo">
+                    <option value="Matara">
+                    <option value="Galle">
+                    <option value="Kandy">
+        </datalist>
+    </div>
+</div>
+    <legend>Contact Info</legend>
+        <div class="form-group">
+            <label for="phone" class="col-sm-2">Phone</label>
+                <div class="col-sm-4">
+                <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number">
+                </div>
+        <label for="email" class="col-sm-2">Email</label>
+            <div class="col-sm-4">
+        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
+        <button type="submit" class="btn btn-warning" name="submit" id="submit">Submit</button>
+    </div>
+</div>
+</form>
+</div>
+
+</body>
+</html>
