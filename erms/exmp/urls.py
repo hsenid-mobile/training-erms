@@ -1,4 +1,4 @@
-"""erms URL Configuration
+"""exmp URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -13,14 +13,15 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf import settings
 from django.conf.urls import include, url
-from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
-    # url(r'^$', 'polls.views.home', name='home'),
-    url(r'^$', 'polls.views.login', name='login'),
-    # url(r'^deoMain/', 'polls.views.deo_main', name='deoMain'),
+    url(r'^$', 'myapp.views.login', name='login'),
+    url(r'^login_view', 'myapp.views.login_view', name='login_view'),
+    url(r'^deo/', 'myapp.views.deo', name='deo'),
+    url(r'^error/', 'myapp.views.error', name='error'),
     url(r'^admin/', include(admin.site.urls)),
+    # url(r'^accounts/', include('registration.backends.default.urls')),
+
 ]
