@@ -3,21 +3,38 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css"
+          href="//ironsummitmedia.github.io/startbootstrap-sb-admin/css/sb-admin.css">
+    <link rel="stylesheet"
+          href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css"/>
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css"/>
+
 </head>
 <body>
 <div class="col-lg-10">
-    <form id="configForm" method="get" action="../">
+
+{% block content %}
+    {% if init_request == "true" %}
+    <form id="configForm" method="get" action="." style="color: white">
         {% csrf_token %}
         <div class="row form-group">
             <div class="col-lg-3">
-                <label for="startDate" class="required">Start Date</label>
+                <label class="required">First Name</label>
             </div>
             <div class="col-lg-5">
-                <div class="input-group input-append date custom-form-field-padding"
-                     id="startDatePicker">
-                    <input id="startDate" type="text" class="form-control" name="startDate"/>
-                                    <span class="input-group-addon add-on"><span
-                                            class="glyphicon glyphicon-calendar"></span></span>
+                <div class="input-group input-append date custom-form-field-padding">
+                    <input id="firstName" name="firstName" type="text" class="form-control"/>
                 </div>
             </div>
             <div class="col-lg-4"></div>
@@ -26,11 +43,11 @@
 
         <div class="row form-group">
             <div class="col-lg-3">
-                <label class="required">End Date</label>
+                <label class="required">Second Name</label>
             </div>
             <div class="col-lg-5">
                 <div class="input-group input-append date custom-form-field-padding">
-                    <input type="text" class="form-control"/>
+                    <input id="secondName" name="secondName" type="text" class="form-control"/>
                 </div>
             </div>
             <div class="col-lg-4"></div>
@@ -39,11 +56,11 @@
 
         <div class="row form-group">
             <div class="col-lg-3">
-                <label class="required">End Date</label>
+                <label class="required">Age</label>
             </div>
             <div class="col-lg-5">
                 <div class="input-group input-append date custom-form-field-padding">
-                    <input type="text" class="form-control"/>
+                    <input id="age" name="age" type="text" class="form-control"/>
                 </div>
             </div>
             <div class="col-lg-4"></div>
@@ -54,8 +71,7 @@
         <div class="row form-group">
             <div class="col-lg-3"></div>
             <div class="col-lg-5">
-                <button name="btn_submit" id="btn_submit" type="submit" class="btn btn-default">Show
-                    Report
+                <button name="btn_submit" id="btn_submit" type="submit" class="btn btn-default">Add
                 </button>
             </div>
             <div class="col-lg-4"></div>
@@ -64,6 +80,8 @@
         <br/><br/><br/>
         <br/><br/><br/>
     </form>
+    {% endif %}
+    {% endblock %}
 </div>
 </body>
 </html>
