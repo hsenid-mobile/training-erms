@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" 
+src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<link href="links/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="personalinfo" style="width:996; height:496;">
+
+
+<h2 style="color:#603"> Basic Information </h2>
+<br><br>
+
+<form id="personalinfo" method="post">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="control-label">Full Name</label>
+                <input type="text" class="form-control" name="full_name" />
+            </div>
+
+            <div class="col-xs-1 selectContainer">
+                <label class="control-label">BOD: Year</label>
+                <select class="form-control" name="genre">
+                	<option value="">Year</option>
+                    <option value="">1989</option>
+                    <option value="">1990</option>
+                    <option value="">1991</option>
+                    <option value="">1992</option>
+                    
+                </select>
+            </div>
+            
+            <div class="col-xs-1 selectContainer">
+                <label class="control-label">Month</label>
+                <br><br>
+                <select class="form-control" name="month">
+                    <option value="">month</option>
+                    <option value="">Jan</option>
+                    <option value="">Feb</option>
+                    <option value="">March</option>
+                    <option value="">April</option>
+                    <option value="">May</option>
+                    <option value="">June</option>
+                    <option value="">July</option>
+                    <option value="">August</option>
+                </select>
+            </div>
+            
+            <div class="col-xs-1 selectContainer">
+                <label class="control-label">Day</label>
+                <br><br>
+                <select class="form-control" name="day">
+                    <option value="">Day</option>
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                    <option value="">6</option>
+                    <option value="">7</option>
+                    <option value="">8</option>
+                    <option value="">9</option>
+                    <option value="">10</option>
+                    
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-4">
+                <label class="control-label">Address Line 1</label>
+                <input type="text" class="form-control" name="adline1" />
+            </div>
+
+            <div class="col-xs-4">
+                <label class="control-label">Address Line 2</label>
+                <input type="text" class="form-control" name="adline2" />
+            </div>
+
+            <div class="col-xs-4">
+                <label class="control-label">Address Line 3</label>
+                <input type="text" class="form-control" name="adline3" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+        	<div class="col-xs-6">
+                <label class="control-label">Email</label>
+                <input type="email" class="form-control" name="email" />
+            </div>
+            
+            <div class="col-xs-6">
+                <label class="control-label">Website (if available)</label>
+                <input type="url" class="form-control" name="website" />
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    <div class="form-group">
+        <label class="control-label">Gender</label>
+        <div>
+            <label class="radio-inline">
+                <input type="radio" name="gender" value="male" /> Male
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="gender" value="female" /> Female
+            </label>
+        </div>
+    </div>
+    
+    <label class="file" for="photo"> Photo
+  <input type="file" id="file">
+  <span class="file-custom"></span>
+</label>
+
+    
+</form>
+
+			</div>
+
+</body>
+</html>

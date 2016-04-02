@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Details</h1>
+
+    {% for dist in query_results %}
+        {{ dist.name }}
+        {{ dist.age }}
+        {{ dist.address }}
+        {{ dist.email }}
+    {% endfor %}
+
+</body>
+</html>

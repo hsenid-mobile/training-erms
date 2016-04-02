@@ -1,0 +1,49 @@
+In Fedora/CentOS/Red Hat use the following to download pip
+	yum install python-pip
+In Ubuntu/debian use the following
+	sudo apt-get install python-pip
+
+
+Then use pip to install virtualenv
+	sudo pip install virtualenv
+
+
+Now download the source of required python version.
+Then compile it and install it.
+	tar -zxvf Python-2.7.5.tgz
+	cd Python-2.7.5
+	./configure --prefix=<folder to install>
+	make
+	make install
+
+
+Now create a Folder to store virtual environments.
+	mkdir -p ~/ENV
+Then create a new virtual environment in this environment.
+	cd ~/ENV
+	virtualenv --python=<the place you saved new python> new_env
+
+
+A "new_env" folder will be created in ~/ENV
+To access the virtual environment activate the environment.
+	cd ~/ENV/new_env/bin
+	source activate
+
+
+Then you will see your command prompt will change with a bracket containing "new_env" in it.
+Now check the python version.
+You will find that the new python version is the default python in this environment.
+
+
+Update setuptools
+	easy_install -U setuptools
+
+
+Here you can install any python library with "pip"
+	pip install <library name>
+That installation will only remain inside the virtual environment.
+
+
+After you finish and when you want to exit the virtual environment deactivate it using following command.
+	deactivate
+

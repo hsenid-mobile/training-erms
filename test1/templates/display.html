@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display</title>
+</head>
+<body>
+    {% for item in form %}
+    <tr>
+        <td>{{ item.Name }}</td>
+        <td>{{ item.Age }}</td>
+        <td>{{ item.Address }}</td>
+        <td>{{ item.Gender }}</td>
+    </tr>
+    {% endfor %}
+</body>
+</html>
