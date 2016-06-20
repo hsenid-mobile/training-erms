@@ -1,0 +1,291 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.tharushashehan.ermsapp04.secondActivity"
+   >
+
+    <TextView
+        android:text="You are Authorized"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+
+    <TabHost
+        android:id="@+id/tabHost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/layhome"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffc916"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/lstTest01">
+
+                    </ListView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your day updates sre displayed here"
+                        android:id="@+id/txtHomeUpdate"/>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#5b89ff"
+                        android:id="@+id/layInterview01">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtLayInterview01"
+                            android:text="You have interview 001001 today in progress"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="120dp"
+                        android:background="#5b89ff"
+                        android:id="@+id/layInterview02">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtLayInterview02"
+                            android:text="You have interview 001002 tomorrow in progress"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="230dp"
+                        android:background="#5b89ff"
+                        android:id="@+id/layInterview03">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtLayInterview03"
+                            android:text="You have interview 001003 on 30th of november in progress"/>
+                    </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_marginTop="340dp"
+                                android:background="#5b89ff">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="You have interview 001008 on 30th of december in progress"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_marginTop="450dp"
+                                android:background="#5b89ff">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="you have interview 001013 on 15th of january"/>
+                            </LinearLayout>
+
+
+
+
+
+                        </RelativeLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layaccept"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#da8200"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your massages from everyone will be displayed here"
+                        android:id="@+id/txtAcceptRejectPerson"/>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#5b89ff"
+                        android:id="@+id/layMassage01">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="hello_world01"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="70dp"
+                        android:background="#5b89ff"
+                        android:id="@+id/layMassage02">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="hello_world02"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="130dp"
+                        android:background="#5b89ff"
+                        android:id="@+id/layMassage03">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="hello_world03" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="190dp"
+                        android:background="#5b89ff">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="hello_world04" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="250dp"
+                        android:background="#5b89ff">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="hello_world05" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="310dp"
+                        android:background="#5b89ff">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="hello_world06" />
+                    </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="370dp"
+                                android:background="#5b89ff">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="hello_world07"/>
+                            </LinearLayout>
+
+                        </RelativeLayout>
+                    </ScrollView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/laysearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#5b89ff"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Enter any ID to search."
+                        android:id="@+id/txtSearchResult"/>
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/edtSearchQuery" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Search"
+                        android:id="@+id/btnSearch" />
+
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Help"
+        android:id="@+id/btnActivity"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentEnd="false" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogout"
+        android:text="Logout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
