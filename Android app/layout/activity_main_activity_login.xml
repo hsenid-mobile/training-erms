@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="@drawable/img02">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="        "
+        android:id="@+id/response_textView"
+        android:layout_marginLeft="61dp"
+        android:layout_marginStart="61dp"
+        android:textAlignment="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="127dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="name"
+        android:id="@+id/textView"
+        android:layout_marginTop="78dp"
+        android:layout_alignParentTop="true"
+        android:background="#5b89ff"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Password"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="41dp"
+        android:background="#5b89ff"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtusername"
+        android:layout_alignTop="@+id/textView"
+        android:layout_toRightOf="@+id/response_textView"
+        android:layout_toEndOf="@+id/response_textView"
+        android:background="#ffc916"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtpassword"
+        android:background="#ffc916"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_toRightOf="@+id/response_textView"
+        android:layout_toEndOf="@+id/response_textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign"
+        android:id="@+id/btnSign"
+        android:layout_below="@+id/edtpassword"
+        android:layout_alignLeft="@+id/edtpassword"
+        android:layout_alignStart="@+id/edtpassword"
+        android:layout_marginTop="56dp"/>
+
+
+</RelativeLayout>
