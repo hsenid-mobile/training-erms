@@ -1,0 +1,94 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+
+    <title>Phase of Head of Department</title>
+
+    <link href="{% static 'core_bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'hod_bootstrap/offcanvas.css' %}" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <a class="navbar-brand" href="#">Project name</a>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav><!-- navbar -->
+
+  <div class="container">
+    <div class="jumbotron">
+    <h1>Hello!</h1>
+      <p>As a Head of Department you can assing new interviwes in interviwe
+        section as well as in CV's section you can see the cv's that are recived
+        to the company. You can see,comment and rate on them.</p>
+      <p>
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+      <div class="btn-group" role="group">
+        <a class="btn btn-primary" href="/hod/hod_inter/" role="button">Interviews</a>
+
+      </div>
+      <div class="btn-group" role="group">
+        <a class="btn btn-primary" href="/hod/hod_cv/" role="button">CV's</a>
+
+      </div>
+      </div>
+      </p>
+    </div>
+  </div>
+
+    <!--<div class="container">-->
+
+      <!--<div class="row row-offcanvas row-offcanvas-right">-->
+        <!--<div class="col-xs-6 col-sm-3" id="sidebar">-->
+          <!--<div class="list-group">-->
+            <!--<a href="personal" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Interview</a>-->
+            <!--<a href="/hod_cv/" class="list-group-item"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> CV's</a>-->
+            <!---->
+
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div id="cv">-->
+        <!--<div class="col-xs-6 col-sm-6">-->
+            <!--<button type="button" class="btn btn-primary">Department_1</button>-->
+            <!--<button type="button" class="btn btn-primery">Department_2</button>-->
+            <!--<button type="button" class="btn btn-primery">Department_3</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div id="educational">-->
+        <!--<div class="col-xs-6 col-sm-6">-->
+            <!--<form method="post" class="col-sm-12">-->
+                <!--&lt;!&ndash;{{ form2}}&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="submit" class="btn btn-primary">&ndash;&gt;-->
+            <!--</form>-->
+        <!--</div>-->
+        <!--</div>-->
+      <!--</div>&lt;!&ndash;/row&ndash;&gt;-->
+
+      <!--<hr>-->
+
+      <!--<footer>-->
+        <!--<p>&copy; Erms 2016</p>-->
+      <!--</footer>-->
+
+    <!--</div>-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'hod_bootstrap/jquery.min.js' %}"></script>
+    <script>window.jQuery || document.write('<script src="{% static 'hod_bootstrap/jquery.min.js' %}"><\/script>')</script>
+    <script src="{% static 'core_dootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'hod_bootstrap/ie10-viewport-bug-workaround.js' %}"></script>
+    <script src="{% static 'hod_bootstrap/offcanvas.js' %}"></script>
+  </body>
+</html>
+
