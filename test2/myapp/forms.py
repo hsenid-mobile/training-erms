@@ -1,8 +1,6 @@
 from django import forms
-from django.db import models
-from datetime import date,time
+from django.contrib.admin import widgets
 from .models import *
-
 
 
 class PersonForm(forms.ModelForm):
@@ -15,11 +13,17 @@ class PersonForm(forms.ModelForm):
 
 
 class InterviewForm(forms.ModelForm):
-
     class Meta:
         model = Interview
-        fields = ['Time', 'Date', 'Venue', 'HOD', 'Interviewers', 'Vacancy', 'Department', 'InterviewType']
-        exclude = ['NoOfPasses', 'NoOfFails', 'NoOfOnHolds','Interviewer_Review', 'HOD_Review', 'HR_Review']
+        fields = ['Time', 'Date', 'Venue', 'HOD', 'Vacancy', 'Department', 'InterviewType']
+        exclude = ['NoOfPasses', 'NoOfFails', 'NoOfOnHolds', 'Interviewer_Review', 'HOD_Review', 'HR_Review']
+
+
+class InterviewForm2(forms.ModelForm):
+    class Meta:
+        model = Interview
+        fields = ['Interviewers']
+        exclude = ['Time', 'Date', 'Venue', 'HOD', 'Vacancy', 'Department', 'InterviewType','NoOfPasses', 'NoOfFails', 'NoOfOnHolds', 'Interviewer_Review', 'HOD_Review', 'HR_Review']
 
 
 class ExperienceForm(forms.ModelForm):
@@ -49,7 +53,11 @@ class SpecializedAreaForm(forms.ModelForm):
 
 
 class VacancyForm(forms.ModelForm):
-    # DateOfPublish = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS)
+    # def __init__(self, *args, **kwargs):
+    #     super(VacancyForm, self).__init__(*args, **kwargs)
+    #     self.fields['DateOfPublish'].widget = widgets.AdminDateWidget()
+    #     self.fields['ClosingDate'].widget = widgets.AdminTimeWidget()
+
     class Meta:
         model = Vacancy
         fields = ['Post', 'DeptID', 'NoOfPossitions', 'NoOfIntDone', 'DateOfPublish', 'ClosingDate']

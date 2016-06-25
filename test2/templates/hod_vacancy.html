@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load bootstrap %}
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
@@ -57,34 +58,54 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
   	    <div class="row">
             <div class="col-sm-3">
-                <ul id="sidebar" class="nav nav-sidebar">
-                    <li><a href="/hod/">Dashboard</a></li>
-                    <li><a href="/hod/hod_inter/">Interview</a></li>
-                    <li><a href="/hod/hod_cv/">Profiles</a></li>
-                    <li><a href="/hod/hod_msg/">Message</a></li>
-
-                </ul>
-            </div>
-            <div class="col-sm-5">
-                <h2><b><u>Vacancy Form</u></b></h2><br><br>
-                <form action="" method="post">{% csrf_token %}
-                    {{ v_form|crispy }}
-                    <button type="submit" class="btn btn-primary">Create</button>
-                </form>
-
+            <!-- Left column -->
+            <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+            <hr>
+            <ul class="nav nav-stacked">
+                    <ul class="nav nav-stacked collapse in" id="userMenu">
+                        <li class="active"> <a href="/hod/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li><a href="/hod/hod_inter/"><i class="fa fa-book"></i> Interview</a></li>
+                        <li><a href="/hod/hod_cv/"><i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="/hod/hod_msg/"><i class="fa fa-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
+                        <li><a href="/deo/"><i class="fa fa-comment"></i> DEO</a></li>
+                    </ul>
+            </ul>
+        </div>
+            <div class="col-sm-9">
+                 <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="glyphicon glyphicon-wrench pull-right"></i>
+                                <h4>Vacancy form</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form action="" method="post">{% csrf_token %}
+                                <div class="col-sm-6">
+                                    {{ v_form.Post|bootstrap }}
+                                    {{ v_form.DeptID|bootstrap }}
+                                    {{ v_form.NoOfPossitions|bootstrap }}
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    {{ v_form.NoOfIntDone|bootstrap }}
+                                    {{ v_form.DateOfPublish|bootstrap }}
+                                    {{ v_form.ClosingDate|bootstrap }}
+                                </div>
+                            </form>
+                        </div>
+                 </div>
             </div>
         </div>
-    </div>
-     <div class="bottom">
-        <hr>
-           <footer>
-              <p><i>All Right Reserved</i> &copy; Erms 2016</p>
-           </footer>
-    </div>
-
+        <div>
+            <hr>
+                <footer>
+                    <p><i>All Right Reserved</i> &copy; Erms 2016</p>
+                </footer>
+        </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

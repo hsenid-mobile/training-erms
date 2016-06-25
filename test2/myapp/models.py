@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.template.defaultfilters import date
-from datetime import datetime
+from django.core.urlresolvers import reverse
+
 # Create your models here.
 
 def Person_directory_path(instance, filename):
@@ -15,7 +15,7 @@ def User_directory_path(instance, filename):
 
 
 class Person(models.Model):
-    NIC = models.CharField(unique=True,max_length=12)
+    NIC = models.CharField(unique=True, max_length=12)
     FName = models.CharField(max_length=30)
     LName = models.CharField(max_length=30)
     FullName = models.CharField(max_length=100)
@@ -210,13 +210,15 @@ class Venue(models.Model):
 
 
 class Vacancy(models.Model):
-    DateOfPublish = models.DateField(default=datetime.now().strftime('%Y-%m-%d'))
-    ClosingDate = models.DateField(default=datetime.now().strftime('%Y-%m-%d'))
+    DateOfPublish = models.DateField()
+    ClosingDate = models.DateField()
     NoOfIntDone = models.IntegerField()
     NoOfPossitions = models.IntegerField()
     Post = models.ForeignKey(Post, on_delete=models.CASCADE)
     DeptID = models.ForeignKey(Department, on_delete=models.CASCADE)
 
+    def __unicode__(self):
+        return u'{}'.format(self.Post, self.DateOfPublish)
 
 
 class Experience(models.Model):
