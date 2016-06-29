@@ -12,11 +12,10 @@
     <link href="{% static 'core_bootstrap/css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'core_bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-{#    <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">#}
-{#    <link href="{% static 'hod_bootstrap/offcanvas.css' %}" rel="stylesheet">#}
-  </head>
+    <script src="{% static 'jquery/jquery-3.0.0.js' %}"></script>
 
-  <body>
+</head>
+<body>
     <!--Nav_Bar-->
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -76,46 +75,45 @@
         </div>
             <div class="col-sm-8">
                  <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <i class="fa fa-wrench pull-right"></i>
-                                <h4>Interview form</h4>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-{#                            <div class="col-sm-8">#}
-                                <form action="" method="post">{% csrf_token %}
-                                    {{ inter_form_2.Interviewers|bootstrap }}
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-                                <hr>
-                                <form method="get">
-                                    <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead class="thead-default">
-                                            <tr>
-                                                <th>NIC</th>
-                                                <th>FName</th>
-                                                <th>Email</th>
-                                                <th>Select CV</th>
-                                            </tr>
-                                        </thead>
-                                        {% for b in cv %}
-                                            <tr>
-                                                <th>{{ b.NIC }}</th>
-                                                <th>{{ b.FName }}</th>
-                                                <th>{{ b.Email }}</th>
-                                                <th>
-                                                    <a class="btn btn-primary" href="">Add</a>
-                                                    ID = {{ b.id }}
-                                                </th>
-                                            </tr>
-                                        {% endfor %}
-                                    </table>
-                                    </div>
-                                </form>
-{#                            </div>#}
-                        </div>
+                     <div class="panel-heading">
+                         <div class="panel-title">
+                             <i class="fa fa-wrench pull-right"></i>
+                             <h4>Interview form</h4>
+                         </div>
+                     </div>
+                     <div class="panel-body">
+                         <form action="" method="post">{% csrf_token %}
+                             {{ inter_form_2.Interviewers|bootstrap }}
+                             <button type="submit" class="btn btn-primary">Submit</button>
+                         </form>
+                         <hr>
+                         <form method="get" action="">
+                             <div class="table-responsive">
+                                 <table class="table table-striped">
+                                     <thead class="thead-default">
+                                     <tr>
+                                         <th>NIC</th>
+                                         <th>FName</th>
+                                         <th>Email</th>
+                                         <th>Select CV</th>
+                                     </tr>
+                                     </thead>
+                                     {% for b in cv %}
+                                     <tr>
+                                         <th>{{ b.NIC }}</th>
+                                         <th>{{ b.FName }}</th>
+                                         <th>{{ b.Email }}</th>
+                                         <th>
+                                             <a id="add_id" class="btn btn-primary" href="">Add</a>
+                                         </th>
+                                     </tr>
+                                     {% endfor %}
+                                 </table>
+{#                             {{ ID }}#}
+                                    {{ cv_id }}
+                             </div>
+                         </form>
+                     </div>
                  </div>
             </div>
         </div>
@@ -128,10 +126,25 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script>
+        $('add_id').click(function() {
+        $.ajax({
+            url: 'hod/hod_vacancy/test/(?P<ID>[0-9]+)/part2/',
+            method: 'GET',
+            data: {
+                ID:{{ b.id }} , // data you need to pass to your function
+                click: True
+            },
+{#        success: function (data) {#}
+{#            // success callback#}
+{#            // you can process data returned by function from views.py#}
+{#            }#}
+        });
+    });
+    </script>
     <script src="{% static 'hod_bootstrap/jquery.min.js' %}"></script>
     <script>window.jQuery || document.write('<script src="{% static 'hod_bootstrap/jquery.min.js' %}"><\/script>')</script>
     <script src="{% static 'core_dootstrap/js/bootstrap.min.js' %}"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static 'hod_bootstrap/ie10-viewport-bug-workaround.js' %}"></script>
     <script src="{% static 'hod_bootstrap/offcanvas.js' %}"></script>
   </body>

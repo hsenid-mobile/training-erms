@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^hod/hod_vacancy/succs/$', hod_vacancy_succs),
     url(r'^hod/hod_vacancy/test/$', hod_vacancy_test),
     url(r'^hod/hod_vacancy/test/(?P<ID>[0-9]+)/$', hod_inter_create),
-    url(r'^hod/hod_vacancy/test/(?P<ID>[0-9]+)/part2/$', hod_inter_cv),
+    url(r'^hod/hod_vacancy/test/(?P<ID>[0-9]+)/part2/$', hod_inter_cv, name="inter2"),
     url(r'^hod/hod_vacancy/test/vacancy/(?P<ID>[0-9]+)/$', hod_view_vacancy),
     url(r'^hod/hod_cv/$', hod_cv),
     url(r'^hod/hod_cv/(?P<NIC>[^/]+)/$', hod_profile),

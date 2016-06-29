@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
 
 # Create your models here.
+
 
 def Person_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
@@ -145,11 +145,11 @@ class Person_Degree(models.Model):
     Degree = models.ForeignKey(Degree, on_delete=models.CASCADE)
     Year = models.DateField()
     SpecialNotes = models.TextField(null=True)
-    Class = models.ForeignKey('Degree_class',null=True,blank=True)
+    Class = models.ForeignKey('Degree_class', null=True, blank=True)
 
 
 class Degree_class(models.Model):
-    Class =  models.CharField(max_length=20)
+    Class = models.CharField(max_length=20)
 
     def __str__(self):
         return self.Class
@@ -170,7 +170,6 @@ class Users(models.Model):
     Department = models.ForeignKey(Department)
     UserRole = models.ForeignKey(UserRole)
 
-
     def __str__(self):
         return self.UName
 
@@ -190,6 +189,7 @@ class Interview(models.Model):
     Date = models.DateField()
     Venue = models.ForeignKey('Venue')
     HOD = models.ForeignKey(User)
+    # values = CommaSeparatedIntegerField(max_length=200)
     Interviewers = models.ManyToManyField(User,related_name='User_Interviewer')
     Vacancy = models.ForeignKey('Vacancy')
     Department = models.ForeignKey(Department, on_delete=models.CASCADE)
@@ -217,8 +217,8 @@ class Vacancy(models.Model):
     Post = models.ForeignKey(Post, on_delete=models.CASCADE)
     DeptID = models.ForeignKey(Department, on_delete=models.CASCADE)
 
-    def __unicode__(self):
-        return u'{}'.format(self.Post, self.DateOfPublish)
+    def __str__(self):
+        return u'{}'.format(self.Post, self.Post)
 
 
 class Experience(models.Model):
@@ -226,7 +226,7 @@ class Experience(models.Model):
     Field = models.CharField(max_length=100)
     Duration = models.FloatField(max_length=2.2)
     Notes = models.TextField()
-    Person = models.ForeignKey(Person,on_delete=models.CASCADE)
+    Person = models.ForeignKey(Person, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.Post, self.Type
@@ -246,12 +246,12 @@ class SubQualification(models.Model):
 class subQul_Post(models.Model):
     QName = models.CharField(max_length=100)
     Subject = models.CharField
-    SubResult =  models.CharField(max_length=10)
+    SubResult = models.CharField(max_length=10)
     Post = models.ForeignKey(Post)
 
 
 class Exp_Post(models.Model):
-    ExPost =  models.ForeignKey(Post, related_name='ExPost')
+    ExPost = models.ForeignKey(Post, related_name='ExPost')
     Post = models.ForeignKey(Post)
     Duration = models.FloatField(max_length=2.2)
 
@@ -281,7 +281,7 @@ class Message_Recieve(models.Model):
 
 class Qualifications(models.Model):
     QName = models.CharField(max_length=100)
-    subject = models.CharField(max_length=100,null=True,blank=True)
+    subject = models.CharField(max_length=100, null=True, blank=True)
 
 
 class LogMode(models.Model):

@@ -99,16 +99,21 @@ def hod_inter_cv(request, ID):
     if request.method == 'POST':
         inter_form_2 = InterviewForm2(request.POST)
         if inter_form_2.is_valid():
-            cv_id.append(ID)
             inter = inter_form_2.save(commit=False)
             inter.save()
-            return cv_id, redirect('/hod/hod_inter/creat2/')
+            return redirect('/hod/hod_vacancy/test/(?P<ID>[0-9]+)/part2/')
         else:
             print inter_form_2.errors
     else:
         inter_form_2 = InterviewForm2()
-    return render(request, 'hod_inter_create_2.html', {'inter_form_2': inter_form_2, 'cv': cv, 'cv_id':cv_id}, context)
 
+    return render(request, 'hod_inter_create_2.html', {'inter_form_2': inter_form_2, 'cv': cv, 'civ_id': cv_id}, context)
+
+
+def hod_view_inter(request, id):
+    if request.method == 'GET':
+        cv_id = request.GET.get(id)
+        return redirect('/hod/hod_vacancy/test/(?P<ID>[0-9]+)/part2/')
 
 def hod_succs(request):
     return render(request, 'hod_succs.html', {})
@@ -132,7 +137,6 @@ def hod_profile(request, NIC):
                 review = hod.save(commit=False)
                 review.user = request.user
                 review.save()
-
                 return redirect('')
             else:
                 print hod.errors
@@ -148,7 +152,6 @@ def hod_msg(request):
 
 
 def hod_send_msg(request):
-
     context = RequestContext(request)
     if request.method == 'POST':
         msg_form = HodMessageForm(request.POST)
@@ -181,7 +184,6 @@ def hod_msg_succs(request):
         context = {
             'error': error,
         }
-
     return render(request, 'hod_msg_succs.html', context)
 
 
@@ -204,16 +206,13 @@ def deo(request):
     context = RequestContext(request)
     if request.method == 'POST':
         deoForm = PersonForm(request.POST)
-
         if deoForm.is_valid():
             data = deoForm.save(commit=False)
             data.user = request.user
             data.save()
-
             return redirect('/deo/deo_submit/')
         else:
             print deoForm.errors
-
     else:
         deoForm = PersonForm()
     return render(request, 'deo.html', {'deoForm': deoForm}, context)
