@@ -107,13 +107,22 @@ def hod_inter_cv(request, ID):
     else:
         inter_form_2 = InterviewForm2()
 
-    return render(request, 'hod_inter_create_2.html', {'inter_form_2': inter_form_2, 'cv': cv, 'civ_id': cv_id}, context)
+    return render(request, 'hod_inter_create_2.html', {'inter_form_2': inter_form_2, 'cv': cv}, context)
 
 
-def hod_view_inter(request, id):
-    if request.method == 'GET':
-        cv_id = request.GET.get(id)
-        return redirect('/hod/hod_vacancy/test/(?P<ID>[0-9]+)/part2/')
+def hod_view_inter(request, ID):
+    vacan = Vacancy.objects.get(id=ID)
+    cv = Person.objects.all()
+    inter_form_2 = InterviewForm2(request.POST)
+    try:
+        selected_cv = Person.objects.get(id=request.POST['cv'])
+    except (KeyError, Person.DoesNotExist):
+        return render(request, 'hod_inter_create_2.html', {'error': "Person does not exist"})
+    else:
+        selected_cv.is_selected = True
+        selected_cv.save()
+        return render(request, 'hod_inter_create_2.html', {'inter_form_2': inter_form_2, 'cv': cv, 'vacan':vacan})
+
 
 def hod_succs(request):
     return render(request, 'hod_succs.html', {})

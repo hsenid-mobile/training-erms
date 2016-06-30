@@ -83,13 +83,16 @@
                      </div>
                      <div class="panel-body">
                          <form action="" method="post">{% csrf_token %}
-                             {{ inter_form_2.Interviewers|bootstrap }}
-                             <button type="submit" class="btn btn-primary">Submit</button>
-                         </form>
+{#                             {{ inter_form_2.Interviewers|bootstrap }}#}
+                              <button type="submit" class="btn btn-primary">Submit</button>
                          <hr>
-                         <form method="get" action="">
+                         </form>
+                         <strong>Select CV</strong>
+                         <br>
+                         <br>
+                        <form action="" method="post">{% csrf_token %}
                              <div class="table-responsive">
-                                 <table class="table table-striped">
+                                 <table class="table table-striped table-bordered">
                                      <thead class="thead-default">
                                      <tr>
                                          <th>NIC</th>
@@ -104,13 +107,15 @@
                                          <th>{{ b.FName }}</th>
                                          <th>{{ b.Email }}</th>
                                          <th>
-                                             <a id="add_id" class="btn btn-primary" href="">Add</a>
+                                             <input type="checkbox" class="btn btn-primary" name="cv" value="{{ b.id }}">
+                                             {% if cv.is_selected %}
+                                                 <img src="{% static 'img/star (2).png' %}">
+                                             {% endif %}
                                          </th>
                                      </tr>
                                      {% endfor %}
                                  </table>
-{#                             {{ ID }}#}
-                                    {{ cv_id }}
+                                 <button type="submit" class="btn btn-primary pull-right">Submit</button>
                              </div>
                          </form>
                      </div>
