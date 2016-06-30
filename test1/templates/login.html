@@ -1,0 +1,32 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<title>Enterprise Requirement Management System</title>-->
+     <title>{{ title_head }}</title>
+
+
+    <link rel="stylesheet" href="{% static  'core_bootstrap/css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'core_bootstrap/css/bootstrap-theme.min.css' %}" >
+    <script src="{% static 'core_bootstrap/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/cds.css' %}">
+
+</head>
+<body class="tdStyle">
+
+    <div class="wrapper">
+        <h2 class="header"><b><i>erms</i></b></h2>
+    </div>
+    <form class="form-signin" action="post" >
+
+      <br>
+        {{ loginForm|crispy }}
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+
+    </form>
+  <!--</div>-->
+
+</body>
+</html>
