@@ -1,0 +1,107 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'font-awesome-4.6.3/css/font-awesome.css' %}" >
+    <link rel="stylesheet" href="{% static 'font-awesome-4.6.3/css/font-awesome.min.css' %}" >
+    <link href="{% static 'core_bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'core_bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
+</head>
+<body>
+<!--Nav_Bar-->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/hod/"><b>Erms</b></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="topNavBar">
+                <form class="navbar-form navbar-left" role="search" method="get" action="#">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="q" value="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="/hod/hod_msg/recieve/">
+                            <i class="fa fa-envelope" aria-hidden="false"></i></span>&nbsp; Inbox
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <i class=" fa fa-cog" aria-hidden="false"></i>&nbsp; Settings
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <i class="fa fa-power-off" aria-hidden="false"></i>&nbsp; Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <!-- Left column -->
+            <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+            <hr>
+            <ul class="nav nav-stacked">
+                    <ul class="nav nav-stacked collapse in" id="userMenu">
+                        <li class="active"> <a href="/hod/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li><a href="/hod/hod_inter/"><i class="fa fa-book"></i> Interview</a></li>
+                        <li><a href="/hod/hod_cv/"><i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="/hod/hod_msg/"><i class="fa fa-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
+                        <li><a href="/deo/"><i class="fa fa-comment"></i> DEO</a></li>
+                    </ul>
+            </ul>
+        </div>
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>
+                             <small>Vacancy List</small>
+                        </h1>
+                    </div>
+                </div>
+                <form method="get">{% csrf_token %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                        <tr>
+                            <th>Post</th>
+                            <th>Date of Pub</th>
+                            <th>View</th>
+                            <th>Creat Interview</th>
+                        </tr>
+                        {% for b in obj %}
+                        <tr>
+                            <th>{{ b.Post_Dept }}</th>
+                            <th>{{ b.DateOfPublish }}</th>
+                            <th><a class="btn btn-warning" href="/hod/hod_vacancy/test/vacancy/{{ b.id }}/">View</a></th>
+                            <th><a class="btn btn-primary" href="/hod/hod_vacancy/test/{{ b.id }}/">Set Interview</a></th>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

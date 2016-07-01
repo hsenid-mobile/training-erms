@@ -1,0 +1,97 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+
+    <title>Overview of Interviews</title>
+    <link rel="stylesheet" href="{% static 'font-awesome-4.6.3/css/font-awesome.css' %}" >
+    <link rel="stylesheet" href="{% static 'font-awesome-4.6.3/css/font-awesome.min.css' %}" >
+    <link href="{% static 'core_bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'core_bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+
+    <div class="wrapper">
+            <div class="sidebar-wrapper">
+                    <div class="contact-container container-block">
+                        {{ pro_form.PImage }}
+                    </div>
+                    <div class="contact-container container-block">
+                    <ul class="list-unstyled contact-list">
+                        <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> {{ pro_form.Email }}</a></li>
+                        <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> {{ pro_form.ContactNum }}</a></li>
+                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> {{ pro_form.AddressLine1 }}</a></li>
+                        <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i> {{ pro_form.LinkedInProf }}</a></li>
+                        <li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i> {{ pro_form.FacebookProf }}</a></li>
+                    </ul>
+                    </div>
+            </div>
+            <div class="main-wrapper">
+                <form class="profile-container">
+
+                    <h1 class="name"><b>{{ pro_form.FullName }}</b><a class="btn primary">
+                    <img id="star" href="#" onclick="changeImage()" src="{% static 'img/star (2).png' %}" class="pull-left"/></a></h1>
+                    <h3 class="tagline"><b>{{ pro_form.Post }}</b></h3>
+                    <b><hr></b>
+
+                    <section class="section summary-section">
+                        <h3 class="section-title"><i class="fa fa-user"></i> Basic Information</h3>
+                            <div class="summary">
+                                <label for="NIC"><b>NIC: </b></label>
+                                    {{ pro_form.NIC }}<br>
+                                <label for="FName"><b>First Name: </b></label>
+                                    {{ pro_form.FName }}<br>
+                                <label for="LName"><b>Last Name: </b></label>
+                                    {{ pro_form.LName }}<br>
+                                <label for="FullName"><b>Full Name: </b></label>
+                                    {{ pro_form.FullName }}<br>
+                                <label for="DOB"><b>Date of Birth: </b></label>
+                                    {{ pro_form.DOB }}<br>
+                            </div><!--//summary-->
+                    </section><!--//section-->
+                    <hr>
+                    <section class="section summary-section">
+                        <h3 class="section-title"><i class="fa fa-briefcase"></i> Professional Information</h3>
+                            <div class="summary">
+                                <label for="Objective"><b>Objective: </b></label>
+                                    {{ pro_form.Objective }}<br>
+                                <label for="SpecialNote"><b>Special Note: </b></label>
+                                    {{ pro_form.SpecialNote }}<br>
+                            </div><!--//summary-->
+                    </section><!--//section-->
+                    <hr>
+                    <section class="section summary-section">
+                        <h3 class="section-title"><i class="fa fa-briefcase"></i>Other Reviews</h3
+                    </section><!--//section-->
+                    <hr>
+                    <section class="section summary-section">
+                        <h3 class="section-title"><i class="fa fa-briefcase"></i>Write Reviews</h3>
+                            <form method="post">{% csrf_token %}
+                                {{ hod_form|crispy }}
+                                <button class="btn btn-success">Submit</button>
+                            </form><!--//summary-->
+                    </section><!--//section-->
+                </div><!--//profile-container-->
+
+            </div>
+
+        </div>
+    <footer class="footer">
+    </footer>
+
+    <script>
+        function changeImage() {
+        var image = document.getElementById('star');
+        if (image.src.match("staron")) {
+           image.src = "{% static 'img/star (2).png' %}";
+        } else {
+           image.src = "{% static 'img/star (1).png' %}";
+           }
+        }
+    </script>
+
+</body>
+</html>
