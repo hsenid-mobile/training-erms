@@ -1,13 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image
-from time import time
-from django.utils.timezone import now
-
-
-
 
 # Create your models here.
+
 
 def Person_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
@@ -31,18 +26,24 @@ class Personal(models.Model):
     AddressLine2 = models.CharField(max_length=100)
     AddressLine3 = models.CharField(max_length=100)
     ContactNum = models.CharField(max_length=12)
-    Email = models.EmailField(null=True,blank=True)
-    FacebookProf = models.CharField(max_length=100,null=True,blank=True)
-    LinkedInProf = models.CharField(max_length=100,null=True,blank=True)
-    PImage = models.FileField(upload_to=Person_directory_path,null = True,blank=True)
-    Interests = models.TextField(null=True,blank=True)
-    Objective = models.TextField(null=True,blank=True)
-    CVImage = models.FileField(upload_to=Person_directory_path,null = True,blank=True)
-    PersonalHighlight = models.TextField(blank=True,null=True)
+    Email = models.EmailField(null=True, blank=True)
+    FacebookProf = models.CharField(max_length=100, null=True, blank=True)
+    LinkedInProf = models.CharField(max_length=100, null=True, blank=True)
+    PImage = models.FileField(upload_to=Person_directory_path, null=True, blank=True)
+    Interests = models.TextField(null=True, blank=True)
+    Objective = models.TextField(null=True, blank=True)
+    CVImage = models.FileField(upload_to=Person_directory_path, null=True, blank=True)
+    PersonalHighlight = models.TextField(blank=True, null=True)
     DeptPost = models.ForeignKey("Post_Dept")
+    RecuritedPost = models.ForeignKey("Post") #NEWLY ADDED FIELD
 
     def __str__(self):
-        return self.FName,self.LName,self.FullName,self.Nationality
+        return self.FName
+
+
+class Personal_Post_Dept(models.Model): # add by hr
+    Personal = models.ForeignKey(Personal)
+    Post_Dept = models.ForeignKey('Post_Dept')
 
 
 class Skill(models.Model):
@@ -65,7 +66,7 @@ class Extracurricular(models.Model):
 
 class SpecialAchievements(models.Model):
     Person = models.ForeignKey(Personal)
-    Heading_1= models.CharField(max_length=100)
+    Heading_1 = models.CharField(max_length=100)
     Heading_2 = models.CharField(max_length=100)
     Notes = models.TextField()
 
@@ -135,7 +136,7 @@ class Degree(models.Model):
     DegreeField = models.ForeignKey("DegreeField") #Egineering,Bio Science,Arts,IT
 
     def __str__(self):
-        return self.Degree,self.University
+        return self.Degree, self.University
 
 
 class DegreeField(models.Model):
@@ -148,6 +149,7 @@ class DegreeField(models.Model):
 class DegreeType(models.Model):
     Type = models.CharField(max_length=10)
     HierachyNumber = models.IntegerField()
+
     def __str__(self):
         return self.Type
 
@@ -162,7 +164,7 @@ class Personal_Degree(models.Model):
 
 
 class Degree_class(models.Model):
-    Class =  models.CharField(max_length=20)
+    Class = models.CharField(max_length=20)
 
     def __str__(self):
         return self.Class
@@ -173,6 +175,7 @@ class UserRole(models.Model):
 
     def __str__(self):
         return self.Role
+
 
 class Degree_For_Post(models.Model):
     Degree = models.ForeignKey(Degree)
@@ -187,9 +190,8 @@ class Users(models.Model):
     Department = models.ForeignKey(Department)
     UserRole = models.ForeignKey(UserRole)
 
-
     def __str__(self):
-        return self.UName
+        return u'{}'.format(self.User)
 
 
 class SpecializedArea(models.Model):
@@ -202,20 +204,28 @@ class Interview(models.Model):
     Date = models.DateField()
     Venue = models.ForeignKey('Venue')
     HOD = models.ForeignKey(User)
-    Vacancy = models.ForeignKey('Vacancy',on_delete=models.CASCADE)
+    Vacancy = models.ForeignKey('Vacancy', on_delete=models.CASCADE)
     Department = models.ForeignKey(Department, on_delete=models.CASCADE)
     InterviewType = models.ForeignKey(InterviewType, on_delete=models.CASCADE)
-    Interviewer_Review = models.TextField(blank=True,null=True)
-    HOD_Review = models.TextField(blank=True,null=True)
-    HR_Review = models.TextField(blank=True,null=True)
-    NoOfPasses = models.PositiveIntegerField(blank=True,null=True)
-    NoOfFails = models.PositiveIntegerField(blank=True,null=True)
-    NoOfOnHolds = models.PositiveIntegerField(blank=True,null=True)
+    Interviewer_Review = models.TextField(blank=True, null=True)
+    HOD_Review = models.TextField(blank=True, null=True)
+    HR_Review = models.TextField(blank=True, null=True)
+    NoOfPasses = models.PositiveIntegerField(blank=True, null=True)
+    NoOfFails = models.PositiveIntegerField(blank=True, null=True)
+    NoOfOnHolds = models.PositiveIntegerField(blank=True, null=True)
+    InterviewNo = models.IntegerField(blank=True, null=True) #NoOfIntDone + 1 in vacancy NEWLY ADDED FIELD
+    Post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return u'{}'.format(self.Vacancy)
 
 
 class Interview_Interviewer(models.Model):
     Interview = models.ForeignKey(Interview)
     Interviewer = models.ForeignKey(User)
+
+    def __str__(self):
+        return u'{}'.format(self.Interviewer)
 
 
 class Venue(models.Model):
@@ -228,24 +238,28 @@ class Venue(models.Model):
 class Vacancy(models.Model):
     DateOfPublish = models.DateField()
     ClosingDate = models.DateField()
-    NoOfIntDone = models.IntegerField()
+    NoOfIntDone = models.IntegerField(default=0) #should be auto increment
     NoOfPossitions = models.IntegerField()
     Post_Dept = models.ForeignKey(Post_Dept, on_delete=models.CASCADE)
+    done = models.BooleanField(default=False) #NEWLY ADDED FIELD
+
+    def __str__(self):
+        return u'{}'.format(self.Post_Dept)
 
 
 class Experience(models.Model):
-    Post = models.ForeignKey(Post,null=True,blank=True)
-    AltPost = models.CharField(max_length=100,null=True,blank=True)
+    Post = models.ForeignKey(Post, null=True, blank=True)
+    AltPost = models.CharField(max_length=100, null=True, blank=True)
     Field = models.CharField(max_length=100)
     Duration = models.FloatField(max_length=2.2)
-    YearStart =models.IntegerField()
+    YearStart = models.IntegerField()
     YearEnd = models.IntegerField()
     Company = models.CharField(max_length=100)
     Notes = models.TextField()
-    Personal = models.ForeignKey(Personal,on_delete=models.CASCADE)
+    Personal = models.ForeignKey(Personal, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.Post,self.Type
+        return self.Post, self.Type
 
 
 class SubQualification(models.Model):
@@ -259,18 +273,18 @@ class SubQualification(models.Model):
     SpecialNotes = models.TextField(null=True,blank=True)
 
     def __str__(self):
-        return self.Subject,self.SubResult
+        return self.Subject, self.SubResult
 
 
 class subQul_Post(models.Model):
     QName = models.CharField(max_length=100)
-    Subject = models.CharField
-    SubResult =  models.CharField(max_length=10)
+    Subject = models.CharField(max_length=100)
+    SubResult = models.CharField(max_length=10)
     Post = models.ForeignKey(Post)
 
 
 class Exp_Post(models.Model):
-    ExPost =  models.ForeignKey(Post,related_name='ExPost')
+    ExPost = models.ForeignKey(Post, related_name='ExPost')
     Post = models.ForeignKey(Post)
     Duration = models.FloatField(max_length=2.2)
 

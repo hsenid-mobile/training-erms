@@ -1,56 +1,11 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
+from django.conf import settings
 from django.http import Http404
 from django.shortcuts import render
+from django.core.mail import send_mail
 from django.shortcuts import RequestContext, redirect
-from django.views import generic
-from django.views.generic import View
+from django.db.models import Q
 from datetime import date, datetime
 from .forms import *
-
-#  Login method
-# def login_user(request):
-#     if request.method == "POST":
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         user = authenticate(username=username, password=password)
-#         if user is not None:
-#             if user.is_active:
-#                 login(request, user)
-#                 return render(request, 'hod.html', {})
-#             else:
-#                 return render(request, 'login.html', {'error_message': 'Your account has been disabled'})
-#         else:
-#             return render(request, 'login.html', {'error_message': 'Invalid login'})
-#     return render(request, 'login.html', {})
-#
-
-# class LoginView(View):
-#     loginForm = LoginForm()
-#     template_name = 'login.html'
-
-    # display blank form
-    # def get(self, request):
-    #     form = self.loginForm(None)
-    #     return render(request, self.template_name, {'form': form})
-
-    # post data in
-    # def post(self, request):
-    #     form = self.loginForm(request.POST)
-    #     a = User.objects.all()
-        # if form.is_valid():
-        #     user = form.save(commit=False)
-        #     username = form.cleaned_data['username']
-        #     password = form.cleaned_data['password']
-        #     user.set_password(password)
-        #     user.save()
-        # returns User objects if credentials are correct
-        # user = authenticate(username=a.username, password=a.password)
-        # if user is not None:
-        #     if user.is_active:
-        #         login(request, user)
-        #         return redirect('/hod/')
-    # return render(request, self.template_name, {'form': form})
 
 
 def login(request):
@@ -123,56 +78,117 @@ def hod_view_vacancy(request, ID):
     return render(request, 'hod_view_vacancy.html', {'obj': obj})
 
 
+def interview_view(request, vid):
+    context = RequestContext(request)
+    vacancy = Vacancy.objects.get(id=vid)
+    if request.method == 'POST':
+        form = InterviewForm(request.POST)
+        if form.is_valid():
+            form_variable = form.save(commit=False)
+            form_variable.save()
+            return redirect('/hod/hod_vacancy/test/succs/')
+        else:
+            print form.errors
+    else:
+        form = InterviewForm()
+    return render(request, 'hod_inter_create.html', {'form': form}, context)
+
+
 def hod_inter_create(request, vid):
     context = RequestContext(request)
     obj = Vacancy.objects.get(id=vid)
+    usr = Users.objects.get(User=request.user)
     if request.method == 'POST':
         inter_form = InterviewForm(request.POST)
         if inter_form.is_valid():
             inter = inter_form.save(commit=False)
+            inter.Department = usr.Department
+            inter.HOD = request.user
+            inter.Vacancy = obj
+            inter.InterviewNo = 1
             inter.save()
-            return redirect('/hod/hod_vacancy/test/(?P<vid>[0-9]+)/part2/')
+            return redirect('/hod/hod_vacancy/test/succs/')
         else:
             print inter_form.errors
     else:
         inter_form = InterviewForm()
-    return render(request, 'hod_inter_create.html', {'inter_form': inter_form, 'obj': obj}, context)
+    return render(request, 'hod_inter_create.html', {'inter_form': inter_form, 'obj': obj, 'vid': vid}, context)
 
 
-def hod_inter_interviewer(request, vid):
-    context = RequestContext(request)
-    # x =
+def hod_inter_create_succs(request):
+    return render(request, 'hod_inter_create_succs.html', {})
+
+
+def hod_inter_list_interviewer(request):
+    inter = Interview.objects.all()
+    return render(request, 'hod_inter_list_inter.html', {'inter': inter})
+
+
+def hod_pre_interviwer_list(request, iid):
+    inter = Interview.objects.filter(id=iid)
+    a = UserRole.objects.get(Role="Interviewer")
+    viewer = Users.objects.filter(UserRole=a.id)
+    return render(request, 'hod_inter_create_2.html', {'viewer': viewer, 'inter': inter, 'a':a})
+
+
+def hod_inter_interviewer_2(request, iid, pid):
+    inter = Interview.objects.filter(id=iid).get(id)
+    user = User.objects.get(id=pid)
+    a = UserRole.objects.get(Role="Interviewer")
+    viewer = Users.objects.filter(UserRole=a.id)
     if request.method == 'POST':
-        inter_form_2 = InterviewForm2(request.POST)
-        if inter_form_2.is_valid():
-            inter = inter_form_2.save(commit=False)
-            inter.save()
-            return redirect('/hod/hod_vacancy/test/(?P<vid>[0-9]+)/part2/(?P<cid>[0-9]+)')
+        form = InterviewForm2(request.POST)
+        if form.is_valid():
+            inter_obj = form.save(commit=False)
+            inter_obj.Interview = iid
+            inter_obj.Interviewer = user.id
+            inter_obj = Interview_Interviewer.objects.create(Interview=inter, Interviewer=user.id)
+            inter_obj.save()
+            subject = 'Assinged as Interviewer'
+            message = 'Hi, You have been selected for Interview as Interviwer'
+            from_email = settings.EMAIL_HOST_USER
+            to_list = [user.email, settings.EMAIL_HOST_USER]
+            send_mail(subject, message, from_email, to_list, fail_silently=True)
+
+            return redirect('/hod/hod_vacancy/test/part2/inter_list/(\d+)/(\d+)/')
         else:
-            print inter_form_2.errors
+            print (InterviewForm2.errors)
     else:
-        inter_form_2 = InterviewForm2()
+        i = Interview.objects.get(id=iid)
+        c = Interview_Interviewer.objects.filter(Interview=i.id)
+        # d = c.Interviewer
+        # y= User.objects.filter(Role='Interviewer').exclude(id=d)
+    return render(request, 'hod_inter_create_2.html', {'viewer': viewer, 'inter': inter})
 
-    return render(request, 'hod_inter_create_2.html', {'inter_form_2': inter_form_2 }, context)
+
+def hod_inter_list_cv(request):
+    cv = Personal.objects.all()
+    return render(request, 'hod_inter_list_cv.html', {'cv': cv})
 
 
-def hod_inter_cv(request, vid, iid, pid):
+def hod_pre_cv_list(request, iid):
+    inter = Interview.objects.filter(id=iid)
+    cv = Personal.objects.all()
+    return render(request, 'hod_inter_create_3.html', {'cv': cv, 'inter': inter})
+
+
+def hod_inter_cv(request, iid, pid):
     context = RequestContext(request)
-    person_cv = Personal.objects.all(id=cv)
+    inter = Interview.objects.get(id=iid)
+    cv = Personal.objects.get(Personal=pid)
     if request.method == 'POST':
-        cv_form = PersonInterForm(request.POST)
-        if cv_form.is_valid():
-            h_cv = cv_form.save(commit=False)
-            h_cv.personal = pid
-            h_cv.Interview = iid
-            h_cv.save()
-            return redirect('/hod/hod_vacancy/test/(?P<vid>[0-9]+)/part2/(?P<iid>[0-9]+)/(?P<pid>[0-9]+)')
-        else:
-            print cv_form.errors
+        qual = subQul_Post.objects.get(Post=inter.Post)
+        sub =  SubQualification.objects.filter(QName__contains=qual.QName)
+        ex_post = Exp_Post.objects.get(Post=inter.Post)
+        exp = Experience.objects.filter(Post__contains=ex_post.Post).filter(Duration__contains=ex_post.Duration)
+        p = Personal_Interview_viewer.objects.filter(Q(CV_Status.objects.get(id=1))|Q(CV_Status.objects.get(id=3))) #1 means pass, 2 means failed , 3 means on hold
+        person1 = p.Pesonal
+        Interview.Vacancy.Post_Dept.Post
+        y = Interview.objects.filter(InterviewNo=1)
+        return redirect('/hod/hod_vacancy/test/part2/inter_list/(\d+)/(\d+)/')
     else:
-        cv_form = InterviewForm2()
-
-    return render(request, 'hod_inter_create_3.html', {'cv_form': cv_form}, context)
+        cv = Personal.objects.all()
+    return render(request, 'hod_inter_create_3.html', {'cv': cv, 'inter': inter}, context)
 
 
 def hod_view_inter(request, ID):
@@ -199,6 +215,25 @@ def hod_inter_overview(request):
         'inter_obj': inter_obj,
     }
     return render(request, 'hod_inter_overview.html', context)
+
+
+def hod_inter_view(request, id):
+    inter_obj = Interview.objects.get(id = id)
+    a = UserRole.objects.get(Role="Interviewer")
+    viewer = Interview_Interviewer.objects.filter(Interview=id)
+    cv = Personal_Interview.objects.filter(Interview=id)
+    context = RequestContext(request)
+    if request.method == 'POST':
+        form = InterReviewForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.save()
+            return redirect('/hod/hod_inter/hod_inter_overview/view/(\d+)/')
+        else:
+            print form.errors
+    else:
+        form = InterReviewForm()
+    return render(request, 'hod_inter_view.html', {'inter_obj': inter_obj, 'viewer': viewer, 'cv': cv, 'form': form}, context)
 
 
 def hod_profile(request, NIC):
@@ -262,9 +297,9 @@ def hod_msg_succs(request):
 
 
 def hod_recieve_msg(request):
-    usr = request.user.username
+    usr = request.user
     if request.user.is_authenticated():
-        msg = Messages.objects.get(Recieve=usr)
+        msg = Messages.objects.filter(Recieve=usr.id)
         context = {
             'msg': msg,
         }

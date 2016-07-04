@@ -11,8 +11,7 @@
     <link href="{% static 'core_bootstrap/css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'core_bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-{#    <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">#}
-{#    <link href="{% static 'hod_bootstrap/offcanvas.css' %}" rel="stylesheet">#}
+
   </head>
 
   <body>
@@ -73,23 +72,48 @@
                     </ul>
             </ul>
         </div>
-            <div class="col-sm-9">
-                <div class="jumbotron">
-                    <h2><b>Well Done!!!</b></h2>
-                    <p>You successfully created a Vacancy.</p>
-                    <a class="btn btn-primary" href="/hod/hod_vacancy/">Back</a>
-                    <a class="btn btn-primary" href="/hod/hod_vacancy/test/">Test</a>
+            <div class="col-md-9">
+                <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <i class="fa fa-paper-plane pull-right"></i>
+                            <h4><strong>Assign Interviews</strong></h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-info">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            You successfully created the Interview, Also you can assign Interviewers to it.
+                        </div>
+                        <a class="btn btn-success btn-lg" href="/hod/hod_vacancy/test/part2/inter_list/" role="button">&nbsp; Next<i class="fa fa-arrow-right pull-right"></i></a>
+                    </div>
                 </div>
-
+                </div>
+                <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <i class="fa fa-paper-plane pull-right"></i>
+                            <h4><strong>Assign CV</strong></h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-info">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            You successfully created the Interview, Also you can assign CVs to it.
+                        </div>
+                        <a class="btn btn-success btn-lg" href="/hod/hod_vacancy/test/part2/inter_list_cv/" role="button">&nbsp; Next<i class="fa fa-arrow-right pull-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-     <div class="bottom">
-        <hr>
-           <footer>
-              <p><i>All Right Reserved</i> &copy; Erms 2016</p>
-           </footer>
-    </div>
+
+{#        <hr>#}
+{#           <footer>#}
+{#              <p><i>All Right Reserved</i> &copy; Erms 2016</p>#}
+{#           </footer>#}
+
 
 
     <!-- Bootstrap core JavaScript

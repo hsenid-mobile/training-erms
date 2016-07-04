@@ -71,7 +71,16 @@
             </ul>
         </div>
             <div class="col-sm-8">
-                <table class="table table-striped table-bordered table-hover">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>Interview Schedule</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
                     <tr>
                         <th>Vacancy</th>
                         <th>Department</th>
@@ -81,17 +90,24 @@
                     </tr>
                     {% for x in inter_obj %}
                     <tr>
-                        <th>x.Vacancy</th>
-                        <th>x.Department</th>
-                        <th>x.Date</th>
-                        <th>x.InterviewType</th>
-                        <th><a type="button" class="btn btn-success" >View</a></th>
+                        <th>{{ x.Vacancy }}</th>
+                        <th>{{ x.Department }}</th>
+                        <th>{{ x.Date }}</th>
+                        <th>{{ x.InterviewType }}</th>
+                        <th><a type="button" class="btn btn-success" href="/hod/hod_inter/hod_inter_overview/view/{{ x.id }}/">View</a></th>
                     </tr>
                     {% endfor %}
                 </table>
+                </div>
+                </div>
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
      <div class="bottom">
         <hr>
            <footer>

@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load bootstrap %}
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
@@ -11,9 +12,8 @@
     <link href="{% static 'core_bootstrap/css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'core_bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-{#    <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">#}
-{#    <link href="{% static 'hod_bootstrap/offcanvas.css' %}" rel="stylesheet">#}
-  </head>
+
+</head>
 
   <body>
     <!--Nav_Bar-->
@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <form action="" method="post">
-                    {{ Vacn|crispy }}
+                    {{ Vacn|bootstrap }}
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 
