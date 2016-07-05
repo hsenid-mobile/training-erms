@@ -225,7 +225,7 @@ class Interview_Interviewer(models.Model):
     Interviewer = models.ForeignKey(User)
 
     def __str__(self):
-        return u'{}'.format(self.Interviewer)
+        return self.Interviewer
 
 
 class Venue(models.Model):

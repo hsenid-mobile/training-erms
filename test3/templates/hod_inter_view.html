@@ -76,7 +76,7 @@
                         <div class="panel-heading">
                             <div class="panel-title">
                                 <i class="fa fa-paper-plane pull-right"></i>
-                                <h4>Details</h4>
+                                <h4>Interview Details for Vacancy:  {{ inter_obj.Vacancy }}</h4>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -101,10 +101,8 @@
                                  <table class="table table-striped">
                                     {% for b in viewer %}
                                         <tr>
-                                            <th>{{ b.User }}</th>
-                                            <th>{{ b.Post }}</th>
-                                            <th>{{ b.Department }}</th>
-                                            </tr>
+                                            <th>{{ b.Interviewer }}</th>
+                                        </tr>
                                         {% endfor %}
                                  </table>
                             </div>
@@ -114,9 +112,7 @@
                                 <table class="table table-striped">
                                     {% for b in cv %}
                                         <tr>
-                                            <th>{{ b.NIC }}</th>
-                                            <th>{{ b.FName }}</th>
-                                            <th>{{ b.Email }}</th>
+                                            <th>{{ b.Personal }}</th>
                                         </tr>
                                     {% endfor %}
                                 </table>

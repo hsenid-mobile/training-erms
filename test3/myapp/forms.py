@@ -98,12 +98,10 @@ class HodReviewForm(forms.ModelForm):
                    'Time', 'Date', 'Venue', 'HOD', 'Interviewers', 'Vacancy', 'Department', 'InterviewType']
 
 
-class HodMessageForm(forms.ModelForm):
-
+class MessageForm(forms.ModelForm):
     class Meta:
-        model = Messages
-        fields = ['MsgType', 'MsgCont', 'MsgAcceptance', 'Send', 'Recieve']
-        exclude = ['SentDate', 'SentTime', 'RecievedDate', 'RecievedTime']
+       model = Messages
+       fields = ('Recieve', 'MsgCont', 'MsgType')
 
 
 class LoginForm(forms.Form):

@@ -49,7 +49,7 @@ urlpatterns = [
     url(r'^hod/hod_inter/hod_inter_overview/view/(\d+)/$', hod_inter_view),
     url(r'^hod/hod_inter/hod_succs$', hod_succs),
     url(r'^hod/hod_msg/$', hod_msg),
-    url(r'^hod/hod_msg/send/$', hod_send_msg),
+    url(r'^hod/hod_msg/send/$', send_msg),
     url(r'^hod/hod_msg/send/succs$', hod_msg_succs),
     url(r'^hod/hod_msg/recieve/$', hod_recieve_msg),
     url(r'^sub/$', subv),

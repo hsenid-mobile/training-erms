@@ -1,11 +1,12 @@
+from django.shortcuts import RequestContext, redirect
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.utils.timezone import now
+from datetime import date, datetime
+from django.shortcuts import render
 from django.conf import settings
 from django.http import Http404
-from django.shortcuts import render
-from django.core.mail import send_mail
-from django.shortcuts import RequestContext, redirect
 from django.db.models import Q
-from django.contrib.auth.models import User
-from datetime import date, datetime
 from .forms import *
 
 
@@ -134,32 +135,14 @@ def hod_pre_interviwer_list(request, iid):
 
 def hod_inter_interviewer_2(request, iid, pid):
     inter = Interview.objects.get(id=iid)
-    usr = User.objects.get(id=pid)
     a = UserRole.objects.get(Role="Interviewer")
     viewer = Users.objects.filter(UserRole=a.id)
-    usr_id = Users.objects.get(User=a.id)
-    # if request.method == 'GET':
-        # form = Interview_Interviewer(request.GET)
+    usr_id = Users.objects.get(id=pid)
+    usr = User.objects.get(id=usr_id.User_id)
     inter_id = inter
-    person_id = usr_id
+    person_id = usr
     form = Interview_Interviewer(Interview=inter_id, Interviewer=person_id)
     form.save()
-        # form = InterviewForm2(request.POST)
-        # if form.is_valid():
-        #     inter_obj = form.save(commit=False)
-        #     inter_obj.Interview = iid
-        #     inter_obj.Interviewer = user.id
-        #     inter_obj = Interview_Interviewer.objects.create(Interview=inter, Interviewer=user.id)
-        #     inter_obj.save()
-        # subject = 'Assinged as Interviewer'
-        # message = 'Hi, You have been selected for Interview as Interviwer'
-        # from_email = settings.EMAIL_HOST_USER
-        # to_list = [user.email, settings.EMAIL_HOST_USER]
-        # send_mail(subject, message, from_email, to_list, fail_silently=True)
-    # return redirect('/hod/hod_vacancy/test/part2/inter_list/(\d+)/(\d+)/')
-    # else:
-    #     inter = Interview.objects.get(id=iid)
-    #     c = Interview_Interviewer.objects.filter(Interview=inter.id)
     return render(request, 'hod_inter_create_2.html', {'viewer': viewer, 'inter': inter})
 
 
@@ -177,17 +160,18 @@ def hod_pre_cv_list(request, iid):
 def hod_inter_cv(request, iid, pid):
     context = RequestContext(request)
     inter = Interview.objects.get(id=iid)
-    cv = Personal.objects.get(id=pid)
-    if request.method == 'POST':
-        qual = subQul_Post.objects.get(Post=inter.Post)
-        sub =  SubQualification.objects.filter(QName__contains=qual.QName)
-        ex_post = Exp_Post.objects.get(Post=inter.Post)
-        exp = Experience.objects.filter(Post__contains=ex_post.Post).filter(Duration__contains=ex_post.Duration)
-        p = Personal_Interview_viewer.objects.filter(Q(CV_Status.objects.get(id=1))|Q(CV_Status.objects.get(id=3))) #1 means pass, 2 means failed , 3 means on hold
-        y = Interview.objects.filter(InterviewNo=1)
-        return redirect('/hod/hod_vacancy/test/part2/inter_list/(\d+)/(\d+)/')
-    else:
-        cv = Personal.objects.all()
+    cv = Personal.objects.all()
+    cv_sp = Personal.objects.get(id=pid)
+    form = Personal_Interview(Interview=inter, Personal=cv_sp)
+    form.save()
+    # if request.method == 'POST':
+    #     qual = subQul_Post.objects.get(Post=inter.Post)
+    #     sub =  SubQualification.objects.filter(QName__contains=qual.QName)
+    #     ex_post = Exp_Post.objects.get(Post=inter.Post)
+    #     exp = Experience.objects.filter(Post__contains=ex_post.Post).filter(Duration__contains=ex_post.Duration)
+    #     p = Personal_Interview_viewer.objects.filter(Q(CV_Status.objects.get(id=1))|Q(CV_Status.objects.get(id=3))) #1 means pass, 2 means failed , 3 means on hold
+    #     y = Interview.objects.filter(InterviewNo=1)
+    #     return redirect('/hod/hod_vacancy/test/part2/inter_list/(\d+)/(\d+)/')
     return render(request, 'hod_inter_create_3.html', {'cv': cv, 'inter': inter}, context)
 
 
@@ -218,10 +202,9 @@ def hod_inter_overview(request):
 
 
 def hod_inter_view(request, id):
-    inter_obj = Interview.objects.get(id = id)
-    a = UserRole.objects.get(Role="Interviewer")
-    viewer = Interview_Interviewer.objects.filter(Interview=id)
-    cv = Personal_Interview.objects.filter(Interview=id)
+    inter_obj = Interview.objects.get(id=id)
+    viewer = Interview_Interviewer.objects.filter(Interview=inter_obj.id)
+    cv = Personal_Interview.objects.filter(Interview=inter_obj.id)
     context = RequestContext(request)
     if request.method == 'POST':
         form = InterReviewForm(request.POST)
@@ -260,20 +243,21 @@ def hod_msg(request):
     return render(request, 'hod_msg.html', {})
 
 
-def hod_send_msg(request):
+def send_msg(request):
     context = RequestContext(request)
     if request.method == 'POST':
-        msg_form = HodMessageForm(request.POST)
-        if request.user.is_authenticated():
-            if msg_form.is_valid():
-                msg = msg_form.save(commit=False)
-                msg.user = request.user
-                msg.save()
-                return redirect('/hod/hod_msg/send')
-            else:
-                print msg_form.errors
+        msg_form = MessageForm(request.POST)
+        if msg_form.is_valid():
+            msgData = msg_form.save(commit=False)
+            msgData.Send = request.user
+            msgData.SentDate = now()
+            msgData.SentTime = now()
+            msgData.save()
+            return redirect('/int/send_msg')
+        else:
+            print(msg_form.errors)
     else:
-        msg_form = HodMessageForm()
+        msg_form = MessageForm()
     return render(request, 'hod_send_msg.html', {'msg_form': msg_form}, context)
 
 
