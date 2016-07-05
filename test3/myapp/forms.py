@@ -18,7 +18,7 @@ class PersonForm(forms.ModelForm):
         model = Personal
         fields = ['NIC', 'FName', 'LName', 'FullName', 'DOB',
                   'AddressLine1', 'ContactNum', 'Objective', 'Interests',
-                  'Email', 'DeptPost', 'FacebookProf', 'DateRecieved',
+                  'Email', 'FacebookProf', 'DateRecieved',
                   'PersonalHighlight', 'LinkedInProf', 'Objective'
                   ]
         exclude = ['InterviewNo']

@@ -34,7 +34,7 @@ class Personal(models.Model):
     Objective = models.TextField(null=True, blank=True)
     CVImage = models.FileField(upload_to=Person_directory_path, null=True, blank=True)
     PersonalHighlight = models.TextField(blank=True, null=True)
-    DeptPost = models.ForeignKey("Post_Dept")
+    # DeptPost = models.ForeignKey("Post_Dept")
     RecuritedPost = models.ForeignKey("Post") #NEWLY ADDED FIELD
 
     def __str__(self):

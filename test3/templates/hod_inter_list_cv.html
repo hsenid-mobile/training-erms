@@ -77,7 +77,7 @@
                         <div class="panel-heading">
                             <div class="panel-title">
                                 <i class="fa fa-paper-plane pull-right"></i>
-                                <h4>CV list</h4>
+                                <h4>Interview list</h4>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -85,17 +85,17 @@
                     <table class="table table-striped">
                         <thead class="thead-default">
                         <tr>
-                            <th>NIC</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th></th>
+                            <th>Vacancy</th>
+                            <th>Date</th>
+                            <th>Department</th>
+                            <th>CV</th>
                         </tr>
                         </thead>
-                        {% for b in cv %}
+                        {% for b in inter %}
                         <tr>
-                            <th>{{ b.NIC }}</th>
-                            <th>{{ b.FullName }}</th>
-                            <th>{{ b.Email }}</th>
+                            <th>{{ b.Vacancy }}</th>
+                            <th>{{ b.Date }}</th>
+                            <th>{{ b.Department }}</th>
                             <th>
                                 <a class="btn btn-primary" href="/hod/hod_vacancy/test/part2/inter_list_cv/{{ b.id }}/">Assign</a>
                             </th>
