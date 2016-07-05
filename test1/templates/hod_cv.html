@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <title>Phase of Head of Department</title>
+
+    <link href="{% static 'core_bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'hod_bootstrap/offcanvas.css' %}" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <a class="navbar-brand" href="#">Project name</a>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav><!-- navbar -->
+
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-6 col-sm-3" id="sidebar">
+          <div class="list-group">
+
+
+            <a href="cv" class="list-group-item"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> CV's</a>
+          </div>
+        </div>
+        <div id="cv">
+        <div class="col-xs-6 col-sm-6">
+            <form method="post" class="col-sm-12">
+                {{ form_cv }}
+                <input type="submit" class="btn btn-primary">
+            </form>
+        </div>
+        </div>
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Erms 2016</p>
+      </footer>
+
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'hod_bootstrap/jquery.min.js' %}"></script>
+    <script>window.jQuery || document.write('<script src="{% static 'hod_bootstrap/jquery.min.js' %}"><\/script>')</script>
+    <script src="{% static 'core_dootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'hod_bootstrap/ie10-viewport-bug-workaround.js' %}"></script>
+    <script src="{% static 'hod_bootstrap/offcanvas.js' %}"></script>
+  </body>
+</html>
+

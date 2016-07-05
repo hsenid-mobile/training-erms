@@ -1,0 +1,225 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+
+    <title>Phase of Head of Department</title>
+
+    <link rel="stylesheet" href="{% static 'font-awesome-4.6.3/css/font-awesome.css' %}" >
+    <link rel="stylesheet" href="{% static 'font-awesome-4.6.3/css/font-awesome.min.css' %}" >
+    <link href="{% static 'core_bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'core_bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'focss/simple-sidebar.css' %}" rel="stylesheet">
+    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+    <link href="{% static 'css/plugins/morris.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/hod/"><b>Erms</b></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="topNavBar">
+                <form class="navbar-form navbar-left" role="search" method="get" action="#">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="q" value="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="/hod/hod_msg/recieve/">
+                            <i class="fa fa-envelope" aria-hidden="false"></i></span>&nbsp; Inbox
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <i class=" fa fa-cog" aria-hidden="false"></i>&nbsp; Settings
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <i class="fa fa-power-off" aria-hidden="false"></i>&nbsp; Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+  	    <div class="row">
+            <div class="col-sm-3">
+            <!-- Left column -->
+            <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+            <hr>
+            <ul class="nav nav-stacked">
+                    <ul class="nav nav-stacked collapse in" id="userMenu">
+                        <li class="active"> <a href="/hod/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li><a href="/hod/hod_inter/"><i class="fa fa-book"></i> Interview</a></li>
+                        <li><a href="/hod/hod_cv/"><i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="/hod/hod_msg/"><i class="fa fa-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
+                        <li><a href="/deo/"><i class="fa fa-comment"></i> DEO</a></li>
+                    </ul>
+            </ul>
+        </div>
+        <!-- /col-3 -->
+            <div class="col-sm-9">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Dashboard <small>Phase of Head of Department</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Dashboard
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="fa fa-info-circle"></i>
+                            <strong>As a Head of Department you can assign new interviews in interview
+                            section. In CV's section you can view the cv's that assigned<br>&nbsp;  &nbsp; by the HR Department.
+                            You can view, comment and rate on the profiles.</strong>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-users fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{ intr_count }}</div>
+                                        <div>New Interviews</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/hod/hod_inter/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Interview</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-paperclip fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{ cv_count }}</div>
+                                        <div>New CVs!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/hod/hod_cv/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Curriculum Vitae</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-user-plus fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{ vcncy_count }}</div>
+                                        <div>New Vacancys!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/hod/hod_vacancy/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Vacancy</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-envelope fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{ msg_count }}</div>
+                                        <div>New Messages!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/hod/hod_msg/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Message</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+
+            </div>
+        </div>
+    </div>
+
+  <div class="container">
+
+  </div>
+
+
+
+      <!--<footer>-->
+        <!--<p>&copy; Erms 2016</p>-->
+      <!--</footer>-->
+
+    <!--</div>-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'hod_bootstrap/jquery.min.js' %}"></script>
+    <script>window.jQuery || document.write('<script src="{% static 'hod_bootstrap/jquery.min.js' %}"><\/script>')</script>
+    <script src="{% static 'core_dootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'hod_bootstrap/ie10-viewport-bug-workaround.js' %}"></script>
+    <script src="{% static 'hod_bootstrap/offcanvas.js' %}"></script>
+  </body>
+</html>
