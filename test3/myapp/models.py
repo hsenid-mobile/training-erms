@@ -38,12 +38,15 @@ class Personal(models.Model):
     RecuritedPost = models.ForeignKey("Post") #NEWLY ADDED FIELD
 
     def __str__(self):
-        return self.FName
+        return self.FullName
 
 
 class Personal_Post_Dept(models.Model): # add by hr
     Personal = models.ForeignKey(Personal)
     Post_Dept = models.ForeignKey('Post_Dept')
+
+    def __str__(self):
+        return u'{}'.format(self.Personal)
 
 
 class Skill(models.Model):
@@ -74,6 +77,10 @@ class SpecialAchievements(models.Model):
 class Personal_Interview(models.Model):
     Personal = models.ForeignKey(Personal)
     Interview = models.ForeignKey("Interview")
+    Status = models.ForeignKey("CV_Status", null=True)
+
+    def __str__(self):
+        return u'{}'.format(self.Personal)
 
 
 class Personal_Interview_viewer(models.Model):
@@ -81,7 +88,9 @@ class Personal_Interview_viewer(models.Model):
     Personal_Interview = models.ForeignKey(Personal_Interview)
     Comment = models.TextField()
     Rate = models.PositiveSmallIntegerField()
-    Status = models.ForeignKey("CV_Status", null=True)
+
+    def __str__(self):
+        return u'{}'.format(self.Personal_Interview)
 
 
 class CV_Status(models.Model):
@@ -213,8 +222,9 @@ class Interview(models.Model):
     NoOfPasses = models.PositiveIntegerField(blank=True, null=True)
     NoOfFails = models.PositiveIntegerField(blank=True, null=True)
     NoOfOnHolds = models.PositiveIntegerField(blank=True, null=True)
-    InterviewNo = models.IntegerField(blank=True, null=True) #NoOfIntDone + 1 in vacancy NEWLY ADDED FIELD
+    InterviewNo = models.IntegerField(blank=True, null=True, default=0) #NoOfIntDone + 1 in vacancy NEWLY ADDED FIELD
     Post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    done = models.BooleanField(default=False)
 
     def __str__(self):
         return u'{}'.format(self.Vacancy)
@@ -235,7 +245,7 @@ class Venue(models.Model):
         return self.HallName
 
 
-class Vacancy(models.Model):
+class Vacancy(models.Model): #No Of Interviews should come to this vacancy
     DateOfPublish = models.DateField()
     ClosingDate = models.DateField()
     NoOfIntDone = models.IntegerField(default=0) #should be auto increment
@@ -259,7 +269,7 @@ class Experience(models.Model):
     Personal = models.ForeignKey(Personal, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.Post, self.Type
+        return u'{}'.format(self.Personal)
 
 
 class SubQualification(models.Model):
@@ -273,7 +283,7 @@ class SubQualification(models.Model):
     SpecialNotes = models.TextField(null=True,blank=True)
 
     def __str__(self):
-        return self.Subject, self.SubResult
+        return self.Subject
 
 
 class subQul_Post(models.Model):
@@ -287,6 +297,9 @@ class Exp_Post(models.Model):
     ExPost = models.ForeignKey(Post, related_name='ExPost')
     Post = models.ForeignKey(Post)
     Duration = models.FloatField(max_length=2.2)
+
+    def __str__(self):
+        return self.ExPost
 
 
 class Messages(models.Model):

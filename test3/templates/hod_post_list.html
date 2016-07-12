@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+        <!-- /col-3 -->
+{% block block_body %}
+           <div class="col-sm-9">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>Vacancy List</h4>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <h4><b>View created vacancies</b>&nbsp;  <a class="btn btn-success pull-right" href="/hod/hod_vacancy/test/">View</a></h4>
+                        </div>
+                </div>
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>Create Vacancy</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                <form method="get">
+                    <table class="table table-striped">
+                        <thead class="thead-default">
+                        <tr>
+                            <th>Post</th>
+                            <th>Field</th>
+                            <th>Vacancy</th>
+                        </tr>
+                        </thead>
+                        {% for b in post %}
+                        <tr>
+                            <th>{{ b.Post.Post }}</th>
+                            <th>{{ b.Post.Field }}</th>
+                            <th>
+                                <a class="btn btn-primary" href="/hod/hod_vacancy/{{ b.id }}/">Create</a>
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

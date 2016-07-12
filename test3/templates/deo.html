@@ -17,6 +17,10 @@
         {{ deoForm|crispy }}
         <button class="btn btn-md btn-primary" type="submit">Save</button>
     </form>
+    <form class="col-xs-4" method="POST" action=" ">{% csrf_token %}
+        {{ deoForm|crispy }}
+        <button class="btn btn-md btn-primary" type="submit">Save</button>
+    </form>
 
 </body>
 </html>

@@ -64,16 +64,33 @@
                     </section><!--//section-->
                     <hr>
                     <section class="section summary-section">
-                        <h3 class="section-title"><i class="fa fa-briefcase"></i>Other Reviews</h3
+                        <h3 class="section-title"><i class="fa fa-briefcase"></i> Experiences</h3>
+                            <div class="summary">
+                                <label for="Objective"><b>Post: </b></label>
+                                    {{ exper.Post}}<br>
+                                <label for="SpecialNote"><b>Other Post: </b></label>
+                                    {{ exper.AltPost }}<br>
+                                <label for="SpecialNote"><b>Field: </b></label>
+                                    {{ exper.Field }}<br>
+                                <label for="Objective"><b>Started Year: </b></label>
+                                    {{ exper.YearStart }}<br>
+                                <label for="SpecialNote"><b>Ended Year: </b></label>
+                                    {{ exper.YearEnd }}<br>
+                                <label for="Objective"><b>Duration: </b></label>
+                                    {{ exper.Duration }}<br>
+                                <label for="SpecialNote"><b>Company: </b></label>
+                                    {{ exper.Company }}<br>
+                                <label for="Objective"><b>Special Notes: </b></label>
+                                    {{ exper.Notes }}<br>
+
+                            </div><!--//summary-->
                     </section><!--//section-->
                     <hr>
                     <section class="section summary-section">
-                        <h3 class="section-title"><i class="fa fa-briefcase"></i>Write Reviews</h3>
-                            <form method="post">{% csrf_token %}
-                                {{ hod_form|crispy }}
-                                <button class="btn btn-success">Submit</button>
-                            </form><!--//summary-->
+                        <h3 class="section-title"><i class="fa fa-briefcase"></i>Educational Qualifications</h3
                     </section><!--//section-->
+                    <hr>
+
                 </div><!--//profile-container-->
 
             </div>

@@ -13,6 +13,12 @@ class TimeInput(forms.TimeInput):
     input_type = 'time'
 
 
+# class ExperienceForm(forms.ModelForm):
+#     class Meta:
+#         model = Experience
+#         fields = ['Post','AltPost','Field','Duration','YearStart','YearEnd','Company', 'Notes','Personal']
+
+
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Personal
@@ -30,16 +36,8 @@ class InterviewForm(forms.ModelForm):
 
     class Meta:
         model = Interview
-        fields = ['Time', 'Date', 'Venue', 'InterviewType', 'Post']
+        fields = ['Time', 'Date', 'Venue', 'InterviewType']
         exclude = ['NoOfPasses', 'NoOfFails', 'NoOfOnHolds', 'Interviewer_Review', 'HOD_Review', 'HR_Review']
-
-
-class InterReviewForm(forms.ModelForm):
-
-    class Meta:
-        model = Interview
-        fields = ['HOD_Review']
-        exclude = ['NoOfPasses', 'NoOfFails', 'NoOfOnHolds', 'Interviewer_Review', 'Time', 'Date', 'Venue', 'HOD', 'Department', 'InterviewType', 'HR_Review', 'InterviewNo', 'Vacancy']
 
 
 class InterviewForm2(forms.ModelForm):
@@ -50,12 +48,16 @@ class InterviewForm2(forms.ModelForm):
 
 
 class ExperienceForm(forms.ModelForm):
-
     class Meta:
         model = Experience
-        fields = ['Post', 'Field', 'Duration', 'Company',
-                  'AltPost', 'YearStart', 'YearEnd', 'Notes']
-        exclude = ['Personal']
+        fields = ['Personal', 'Post', 'Field', 'Duration', 'Company', 'AltPost', 'YearStart', 'YearEnd', 'Notes']
+
+
+class SelectStatusForm(forms.ModelForm):
+    class Meta:
+        model = Personal_Interview
+        fields = ['Status']
+        exclude = ['Personal', 'Interview']
 
 
 class PersonInterForm(forms.ModelForm):
@@ -85,15 +87,20 @@ class VacancyForm(forms.ModelForm):
 
     class Meta:
         model = Vacancy
-        fields = ['Post_Dept', 'NoOfPossitions', 'NoOfIntDone', 'DateOfPublish', 'ClosingDate']
-        exclude = ['done']
+        fields = ['NoOfPossitions', 'DateOfPublish', 'ClosingDate']
+        exclude = ['done', 'NoOfIntDone', 'Post_Dept']
 
 
 class HodReviewForm(forms.ModelForm):
+    done = forms.BooleanField(
+        label='Done',
+        required=True,
+        initial=False
+    )
 
     class Meta:
         model = Interview
-        fields = ['HOD_Review']
+        fields = ['HOD_Review', 'done']
         exclude = ['NoOfPasses', 'NoOfFails', 'NoOfOnHolds', 'Interviewer_Review', 'HR_Review',
                    'Time', 'Date', 'Venue', 'HOD', 'Interviewers', 'Vacancy', 'Department', 'InterviewType']
 
