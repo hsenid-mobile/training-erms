@@ -1,0 +1,42 @@
+{% extends "hod/index.html" %}
+{% block block_body %}
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>
+                             <small>Vacancy List</small>
+                        </h1>
+                    </div>
+                </div>
+                <form method="get">{% csrf_token %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                        <tr>
+                            <th>Post</th>
+                            <th>Date of Pub</th>
+                            <th>No of Interviews Done</th>
+                            <th>No of Interviews Set</th>
+                            <th>View</th>
+                            <th>Creat Interview</th>
+
+                        </tr>
+                        {% for b in obj %}
+                        <tr>
+                            <th>{{ b.Post_Dept.Post }}</th>
+                            <th>{{ b.DateOfPublish }}</th>
+                            <th>{{ b.NoOfIntDone }}/{{ b.Post_Dept.Post.NoOfInterviews}}</th>
+                            <th>{{ b.CurrentInt }}/{{ b.Post_Dept.Post.NoOfInterviews}}</th>
+                            <th><a class="btn btn-warning" href="/hod/hod_vacancy/test/vacancy/{{ b.id }}/">View</a></th>
+{#                            {% if NoOfInt > NoOfIntDone %}#}
+                                <th><a class="btn btn-primary" href="/hod/hod_vacancy/test2/{{ b.id }}/">Set Interview</a></th>
+{#                            {% else %}#}
+{#                                <th><a class="btn btn-primary disabled" href="/hod/hod_vacancy/test/{{ b.id }}/">Set Interview</a></th>#}
+{#                            {% endif %}#}
+
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    </div>
+                </form>
+            </div>
+{% endblock %}

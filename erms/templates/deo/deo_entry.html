@@ -1,0 +1,27 @@
+{% extends "deo/deo_index.html" %}
+{% load l10n %}
+{% load bootstrap %}
+{% block deo_entryform %}
+        <div>
+        <strong>{{ completion }}</strong>
+        </div>
+        <div>
+        <strong>{{ name }}</strong>
+        </div>
+        <div id="entry">
+        <div class="col-xs-6 col-sm-6">
+            <form method="post" role="form" action="/ermsapp/DEO/entry" enctype="multipart/form-data" >
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for field in deo_form %}
+                        {{ field|bootstrap }}
+                    {% endfor %}
+                </div>
+                <div col-lg-6>
+                    <input type="submit" class="btn btn-primary btn-block" >
+                </div>
+            </form>
+        <p>{{ limit }}</p>
+        </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "deo/deo_index.html" %}
+{% block deo_form_otherqual %}
+{% load bootstrap %}
+        <div>
+        <strong>{{ completion }}</strong>
+        </div>
+        <div>
+        <strong>{{ name }}</strong>
+        </div>
+        <div id="personal">
+        <div class="col-xs-6 col-sm-6">
+            <form method="post" role="form" action="/ermsapp/DEO/qualification" >
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ deo_form.QName|bootstrap }}
+                    {{ deo_form.QType|bootstrap }}
+                    {{ deo_form.Result|bootstrap }}
+                    {{ deo_form.SpecialNotes|bootstrap }}
+                </div>
+               <div col-lg-6>
+                   <input type="submit" class="btn btn-primary btn-block">
+                   <br>
+                   <br>
+                     <a href="/ermsapp/DEO/skills"><input class="btn btn-success btn-block" value="Next" class ="btn btn-success""></a>
+                </div>
+                <br>
+            </form>
+        </div>
+        </div>
+{% endblock %}

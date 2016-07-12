@@ -1,0 +1,122 @@
+{% extends 'pages/index.html' %}
+{% load bootstrap %}
+{% block pages %}
+<div id="page-wrapper">
+            <div class="col-lg-12">
+                <h1 class="page-header">Dashboard</h1>
+            <div class="jumbotron">
+                    <h1><center>Hello, {{ user }}! </center></h1>
+                    <p>This is the CV Data entering Passage of the ERMS System.Enter to the tutorial session to learn about the ERMS system or you can start working now .</p>
+                    <p><center><a href="#" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></center></p>
+            </div>
+            <div class="col-lg-10">
+                <strong>{{ name }}</strong>
+            </div>
+          </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Home</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-file-text fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">2</div>
+                                    <div>New Reviews!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'view_review' %}">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Reviews</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">3</div>
+                                    <div>New Ratings!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'view_rate' %}">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Ratings</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-comments fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">3</div>
+                                    <div>New Comments!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'view_comment' %}">
+                            <div class="panel-footer">
+                                <span class="pull-left">View COmments</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-envelope fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">03</div>
+                                    <div>New Messages!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'view_msg' %}">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Messages</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-8 -->
+            </div>
+            <!-- /.row -->
+        </div>
+{% endblock %}

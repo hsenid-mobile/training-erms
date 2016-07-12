@@ -1,0 +1,27 @@
+{% extends "admin/index.html" %}
+{% block user_register %}
+{% load bootstrap %}
+    <div>
+        <strong>{{ completion }}</strong>
+    </div>
+    <div class="col-lg-6">
+        {% if registered %}
+            Rango says: <strong>thank you for registering!</strong>
+            <a href="register">Return to the homepage.</a><br />
+        {% else %}
+
+            <form action ="register" method="POST" role="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in reg_form1 %}
+                {{ field|bootstrap }}
+            {% endfor %}
+            {{ reg_form2.UPhoto|bootstrap }}
+            {{ reg_form2.FullName|bootstrap }}
+            {{ reg_form2.UserRole|bootstrap }}
+            {{ reg_form2.Post|bootstrap }}
+            {{ reg_form2.Department|bootstrap }}
+                <input type="submit" class=" btn btn-primary btn-block" value="Register">
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

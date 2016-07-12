@@ -1,0 +1,54 @@
+{% extends "deo/deo_index.html" %}
+{% load l10n %}
+{% load crispy_forms_tags %}
+{% block deo_form_personal %}
+{% load bootstrap %}
+
+        <div>
+        <strong>{{ completion }}</strong>
+        </div>
+        <div>
+        <strong>{{ name }}</strong>
+        </div>
+        <div id="personal">
+
+            <form method="post" role="form" action="/ermsapp/DEO/personal_info" enctype="multipart/form-data" >
+                {% csrf_token %}
+                <div class="main col-lg-12 myHalfCol">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            {{ deo_form.NIC|bootstrap }}<br>
+                            {{ deo_form.FName|bootstrap }}<br>
+                            {{ deo_form.LName|bootstrap }}<br>
+                            {{ deo_form.FullName|bootstrap }}<br>
+                            {{ deo_form.DOB|bootstrap }}<br>
+                            {{ deo_form.Nationality|bootstrap }}<br>
+                            {{ deo_form.CVImage|bootstrap }}<br>
+                            {{ deo_form.PImage|bootstrap }}<br>
+                            {{ deo_form.DateRecieved|bootstrap }}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            {{ deo_form.ContactNum|bootstrap }}<br>
+                            {{ deo_form.Email|bootstrap }}<br>
+                            {{ deo_form.AddressLine1|bootstrap }}<br>
+                            {{ deo_form.AddressLine2|bootstrap }}<br>
+                            {{ deo_form.AddressLine3|bootstrap }}<br>
+                            {{ deo_form.FacebookProf|bootstrap }}<br>
+                            {{ deo_form.LinkedInProf|bootstrap }}<br>
+                            {{ deo_form.Interests|bootstrap }}<br>
+
+                        </div>
+                    </div>
+                <div class="main col-lg-12 myHalfCol">
+                    {{ deo_form.Objective|bootstrap }}<br>
+                    {{ deo_form.PersonalHighlight|bootstrap }}<br>
+                    <input type="submit" class="btn btn-primary btn-block" value="Next" width="50" height="30">
+
+                </div>
+
+            </form>
+
+        </div>
+{% endblock %}

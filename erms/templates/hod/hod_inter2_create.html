@@ -1,0 +1,31 @@
+{% extends "hod/index.html" %}
+{% load bootstrap %}
+{% block block_body %}
+
+            <div class="col-sm-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <i class="fa fa-pagelines pull-right"></i>
+                            <h4>Interview Form</h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form action="" method="post">{% csrf_token %}
+                            <div class="col-sm-6">
+                                {{ inter_form.Time|bootstrap }}
+                                {{ inter_form.Date|bootstrap }}
+                                <hr>
+                                <button type="submit" class="btn btn-primary" >Submit</button>
+                            </div>
+                            <div class="col-sm-6">
+                                {{ inter_form.Venue|bootstrap }}
+                                {{ inter_form.InterviewType|bootstrap }}
+                            </div>
+                            </form>
+                     </div>
+                </div>
+            </div>
+
+
+{% endblock %}

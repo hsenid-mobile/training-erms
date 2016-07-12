@@ -1,0 +1,24 @@
+{% extends "deo/deo_index.html" %}
+{% load crispy_forms_tags %}
+{% block deo_form_degreetype %}
+{% load bootstrap %}
+        <div id="personal">
+        <div class="col-xs-6 col-sm-6">
+            <form method="post" action="degreetype"  class="col-sm-12" role="form">
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for field in form1 %}
+                        {{ field|bootstrap }}
+                    {% endfor %}
+                </div>
+                <div col-lg-6>
+                    <input type="submit" class="btn btn-primary btn-block" value="Next Degree Type">
+                </div>
+                <br>
+                <div col-lg-6>
+                    <a href="/ermsapp/DEO/experience_info"><input class="btn btn-warning btn-block" value="Add New Sport Activity" class ="btn btn-success""></a>
+                </div>
+            </form>
+        </div>
+        </div>
+{% endblock %}

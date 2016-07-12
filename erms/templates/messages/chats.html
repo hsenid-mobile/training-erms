@@ -1,0 +1,48 @@
+{% extends "deo/deo_index.html" %}
+{% block chats %}
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Recievers
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                {% for fields in recievers %}
+
+                                    <a href="/messages/home/{{ fields.Reciever.id }}" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw">{{ fields.Reciever }}</i>
+                                    <span class="pull-right text-muted small"><em></em></span><br>
+                                </a>
+                               {% endfor %}
+                            </div>
+                            <!-- /.list-group -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Senders
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                {% for fields in senders %}
+
+                                    <a href="/messages/home/{{ fields.Sender.id }}" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw">{{ fields.Sender.username }}</i>
+                                    <span class="pull-right text-muted small"><em></em></span><br>
+                                </a>
+                               {% endfor %}
+                            </div>
+                            <!-- /.list-group -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                </div>
+
+{% endblock %}

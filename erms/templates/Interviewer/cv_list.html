@@ -1,0 +1,46 @@
+{% extends 'Interviewer/index.html' %}
+{% load bootstrap %}
+{% block cv_list %}
+   <div class="col-lg-8">
+                        <h4>Interview Schedule</h4>
+                        <div class="table-responsive">
+                            <table class="table table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Mobile</th>
+                                        <th>Select</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>{% for fields in int %}
+                                        <td>{{ fields.id }}</td>
+                                        <td>{{ fields.Personal.FName }}</td>
+                                        <td>{{ fields.Personal.LName }}</td>
+                                        <td>{{ fields.Personal.ContactNum }}</td>
+                                        <th><a href="/interviewer/cv_profile/{{ fields.Personal.id }}"><input type="button" class="btn btn-primary btn-block" value="View"></a> </th>
+                                        {% endfor %}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+        <div class="col-lg-4">
+            <form method="post" action="/interviewer/cv_list/{{ iid }}"  class="col-sm-12" role="form">
+                {% csrf_token %}
+                    <div class="form-group">
+
+                        {{ interviewer_form.Interviewer_Review|bootstrap }}
+
+                    </div>
+                    <div col-lg-12>
+                        <input type="submit" class="btn btn-primary btn-block">
+                    </div>
+
+
+            </form>
+        </div>
+{% endblock cv_list %}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends "admin/index.html" %}
+{% load bootstrap %}
+{% block post %}
+    <div class = "col-lg-6">
+    <form action ="/accounts/post" method="POST" >
+        {% csrf_token %}
+
+
+        {% for field in  PostForm %}
+            {{ field|bootstrap }}
+        {% endfor %}
+            {{ PostForm2.Dept|bootstrap }}
+
+
+        <input type="submit" class="btn btn-primary btn-block" value="submit"/>
+    </form>
+    </div>
+{% endblock %}

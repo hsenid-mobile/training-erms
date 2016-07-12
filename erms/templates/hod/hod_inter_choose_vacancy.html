@@ -1,0 +1,47 @@
+{% extends "hod/index.html" %}
+{% load bootstrap %}
+{% block block_body %}
+
+<div class="container-fluid">
+  	    <div class="row">
+            <div class="col-sm-3">
+            <!-- Left column -->
+            <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+            <hr>
+            <ul class="nav nav-stacked">
+                    <ul class="nav nav-stacked collapse in" id="userMenu">
+                        <li class="active"> <a href="/hod/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li><a href="/hod/hod_inter/"><i class="fa fa-book"></i> Interview</a></li>
+                        <li><a href="/hod/hod_cv/"><i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="/hod/hod_msg/"><i class="fa fa-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
+                        <li><a href="/deo/"><i class="fa fa-comment"></i> DEO</a></li>
+                    </ul>
+            </ul>
+        </div>
+            <div class="col-sm-5">
+                <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Interview Form
+                        </h1>
+
+                    </div>
+                </div>
+                <form action="" method="post">
+                    {{ Vacn|bootstrap }}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+     <div class="bottom">
+        <hr>
+           <footer>
+              <p><i>All Right Reserved</i> &copy; Erms 2016</p>
+           </footer>
+    </div>
+
+{% endblock %}
+

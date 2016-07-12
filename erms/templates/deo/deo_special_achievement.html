@@ -1,0 +1,32 @@
+{% extends "deo/deo_index.html" %}
+{% load l10n %}
+{% load crispy_forms_tags %}
+{% block deo_form_special_achievement %}
+{% load bootstrap %}
+        <div>
+        <strong>{{ completion }}</strong>
+        </div>
+        <div>
+        <strong>{{ name }}</strong>
+        </div>
+        <div id="Experience">
+        <div class="col-xs-6 col-sm-6">
+            <form method="post" role="form" action="/ermsapp/DEO/spcl_achvmnt_info" >
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for field in deo_form %}
+                       {{ field|bootstrap }}
+                    {% endfor %}
+                </div>
+                <div col-lg-6>
+                   <input type="submit" class="btn btn-primary btn-block">
+                </div>
+                <br>
+                <div col-lg-6>
+                   <a href="../../ermsapp/DEO/success"><input class="btn btn-success btn-block" value="Add new CV" class ="btn btn-success"></a>
+                </div>
+
+            </form>
+        </div>
+        </div>
+{% endblock %}

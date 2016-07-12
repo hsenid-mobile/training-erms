@@ -1,0 +1,21 @@
+{% extends "hod/index.html" %}
+        <!-- /col-3 -->
+{% block block_body %}
+            <div class="col-sm-9">
+                <div class="jumbotron">
+                    <h2><b>View Message</b></h2>
+                    <p>View the messages sent by other users.</p>
+                    <div class="btn btn-default" role="group">
+                        <a  href="/hod/hod_msg/recieve/" role="button">Inbox</a>
+                    </div>
+
+                </div>
+                <div class="jumbotron">
+                    <h2><b>Compose</b></h2>
+                    <p>Create and send messages to other users.</p>
+                    <div class="btn btn-default" role="group">
+                        <a href="/hod/hod_msg/send/" role="button">Create</a>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

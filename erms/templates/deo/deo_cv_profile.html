@@ -1,0 +1,119 @@
+{% extends 'deo/deo_index.html' %}
+{% load bootstrap %}
+{% block cv_profile %}
+        <div class="sidebar-wrapper">
+            <div class="profile-container">
+                <img class="profile" src="{{ pro_form.PImage.url }}" alt="">
+                <h1 class="name">{{ pro_form.FName }} {{ pro_form.LName }}</h1>
+                <h3 class="tagline">Full Stack Developer</h3>
+            </div><!--//profile-container-->
+
+            <div class="contact-container container-block">
+                <ul class="list-unstyled contact-list">
+                    <li class="email"><i class="fa fa-envelope"></i><a href="mailto: yourname@email.com"></a>{{ pro_form.Email }}</li>
+                    <li class="phone"><i class="fa fa-phone"></i><a href="tel:0123 456 789">{{ pro_form.ContactNum }}</a></li>
+                    <li class="phone"><i class="fa fa-credit-card"></i><a href="tel:0123 456 789">{{ pro_form.NIC }}</a></li>
+                    <li class="linkedin"><i class="fa fa-linkedin"></i><a href="http://themes.3rdwavemedia.com/demo/orbit/#" target="_blank">{{ pro_form.LinkedInProf }}</a></li>
+                    <li class="github"><i class="fa fa-github"></i><a href="http://themes.3rdwavemedia.com/demo/orbit/#" target="_blank">github.com/username</a></li>
+                    <li class="twitter"><i class="fa fa-facebook"></i><a href="https://twitter.com/3rdwave_themes" target="_blank">{{ pro_form.FacebookProf }}</a></li>
+                </ul>
+
+            </div><!--//contact-container-->
+            <div class="education-container container-block">
+                <h2 class="container-block-title">Degrees</h2>
+                {% for model in pro_form_deg %}
+                <div class="item">
+                    <h4 class="degree">{{ model.Degree.DegreeType.Type }} in {{ model.Degree.DegreeField.Field }}</h4>
+                    <h5 class="meta">{{ model.Degree.University.university }}</h5>
+                    <div class="meta">{{ model.Class }}</div>
+                    <div class="time">{{ model.YearStart }} - {{ model.YearEnd }}</div>
+                    <div class="time">{{ model.SpecialNotes }}</div>
+                </div><!--//item-->
+                {% endfor %}
+            </div><!--//education-container-->
+
+            <div class="languages-container container-block">
+                <h2 class="container-block-title">Address</h2>
+                <ul class="list-unstyled interests-list">
+                    <li> {{ pro_form.AddressLine1 }}, {{ pro_form.AddressLine2 }} </li>
+                    <li> {{ pro_form.AddressLine3 }}</li>
+                </ul>
+            </div><!--//interests-->
+
+            <div class="interests-container container-block">
+                <h2 class="container-block-title">Interests</h2>
+                <ul class="list-unstyled interests-list">
+                    <li>{{ pro_form.Interests }}</li>
+                </ul>
+            </div><!--//interests-->
+
+        </div><!--//sidebar-wrapper-->
+
+        <div class="main-wrapper">
+
+            <section class="section summary-section">
+                <h2 class="section-title"><i class="fa fa-user"></i>Career Profile</h2>
+                <div class="summary">
+                    <p>{{ pro_form.PersonalHighlight }}</p>
+                </div><!--//summary-->
+            </section><!--//section-->
+
+            <section class="section summary-section">
+                <h2 class="section-title"><i class="fa fa-user"></i>Objective</h2>
+                <div class="summary">
+                    <p>{{ pro_form.Objective }}</p>
+                </div><!--//summary-->
+            </section><!--//section-->
+
+            <section class="section experiences-section">
+                <h2 class="section-title"><i class="fa fa-briefcase"></i>Experiences</h2>
+                {% for fields in pro_form_experience %}
+                <div class="item">
+                    <div class="meta">
+                        <div class="upper-row">
+                            <h3 class="job-title">{{ fields.Post }}{{ fields.AltPost }}<br></h3>
+                            <div class="time">{{ fields.YearStart }} - {{ fields.YearEnd }}<br></div>
+                            <div class="company" align="right" style="">{{ fields.Duration }} years</div>
+                        </div><!--//upper-row-->
+                        <div class="company">{{ fields.Company }}</div>
+                    </div><!--//meta-->
+                    <div class="details">
+                        <p> {{ fields.Notes }} </p>
+                    </div><!--//details-->
+                </div><!--//item-->
+                {% endfor %}
+
+            <section class="section projects-section">
+                <h2 class="section-title"><i class="fa fa-archive"></i>Special Acievements</h2>
+                {% for fields in pro_form_special %}
+                <div class="item">
+                    <span class="project-title"><a href="">{{ fields.Heading }}</a></span> <br>
+                    <span class="project-tagline">{{ fields.Notes }}</span>
+                {% endfor %}
+
+            </section><!--//section-->
+
+            <section class="skills-section section">
+                <h2 class="section-title"><i class="fa fa-rocket"></i>Skills &amp; Extracurricular</h2>
+                <div class="skillset">
+                    {% for fields in pro_form_skill %}
+                        <div class="item">
+                        <ul>
+                        <li><h3 class="level-title">{{ fields.Skill }}:</h3>
+                            <h3 class="level-title">{{ fields.Description }}</h3>
+                            </li>
+                        </div><!--//level-bar-->
+                        </ul>
+                        {% endfor %}
+                    </div><!--//item-->
+
+            </section><!--//skills-section-->
+
+        </div><!--//main-body-->
+
+    <footer class="footer">
+        <div class="text-center">
+                <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+                <small class="copyright"></small> </div><!--//container-->
+        </footer>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "hod/index.html" %}
+{% block block_body %}
+        <div class="{{ rec }}">
+           <div class="col-sm-9">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>CV List</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead class="thead-default">
+                        <tr>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Mobile Number</th>
+                            <th>Status</th>
+                            <th>View</th>
+                        </tr>
+                        </thead>
+
+                        {% for b in cv %}
+
+                        <tr>
+
+                            <td>{{ b.Personal.FName }} {{ b.Personal.LName }}</td>
+                            <td>{{ b.Personal.NIC }}</td>
+                            <td>{{ b.Personal.ContactNum }}</td>
+                            <form method="POST" action="/hod/hod_recruit3/{{ iid }}{{ b.id }}/">
+                            <td>{% csrf_token %}{{ form.Status }}</td>
+                            <td>
+                                <input type="submit" class="btn btn-primary">
+                            </td>
+                            </form>
+                        </tr>
+
+                        {% endfor %}
+                    {{ count }}
+                    </table>
+                        <a href="/hod/hod_inter/hod_inter_overview/view/{{ iid }}/"><button class = "btn btn-success btn-block"></button></a>
+                    </div>
+                </div>
+           </div>
+        </div>
+         <div class="{{ eve }}">
+           <div class="col-sm-9">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>CV List</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead class="thead-default">
+                        <tr>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Mobile Number</th>
+                            <th>Status</th>
+                            <th>View</th>
+                        </tr>
+                        </thead>
+
+                        {% for b in cv %}
+
+                        <tr>
+
+                            <td>{{ b.Personal.FName }} {{ b.Personal.LName }}</td>
+                            <td>{{ b.Personal.NIC }}</td>
+                            <td>{{ b.Personal.ContactNum }}</td>
+                            <td>{% csrf_token %}{{ form.Status }}</td>
+                            <td>
+                                <a href ="/hod/hod_recruit3/{{ iid }}{{ b.id }}/" ><button  class="btn btn-primary" value="Recruite"></button></a>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                    {{ count }}
+                    </table>
+                    </div>
+                </div>
+           </div>
+        </div>
+{% endblock %}

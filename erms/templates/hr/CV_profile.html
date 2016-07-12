@@ -1,0 +1,305 @@
+{% extends 'hr/index.html' %}
+{% load bootstrap %}
+{% block title %}ERMS-HR-CV-{{ all_persons.FName }} {% endblock %}
+{% block body %}
+
+<div id="page-wrapper">
+<br>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-blue">
+                        <div class="panel-heading">
+                            {% if all_persons %}
+                            {{ all_persons.FullName }}&nbsp &nbsp &nbsp &nbsp
+                                <div class="btn btn-primary" align="right"><a href="{% url 'sendRecCV' all_persons.id %}">Send</a></div>
+                            {% endif %}
+                        </div>
+
+
+                        <div class="panel-body">
+                            <div class="col-xs-9" id="CV_body">
+                            <section class="section summary-section">
+                                <hr>
+                                <h4 class="section-title"><i class="fa fa-flag"></i> Objective</h4>
+                                <hr>
+                                <div class="summary">
+                                    <p align="justify">{{ all_persons.Objective }}</p>
+                                    </div>
+                            </section>
+
+                            <section class="section summary-section">
+                                <hr>
+                                <h4 class="section-title"><i class="fa fa-book" data-toggle="modal" data-target="#eduQ"></i> Educational Qualifications  </h4>
+                                <hr>
+
+                            <div class="modal fade" id="eduQ" tabindex="-1"
+                            role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header" id="lgheader">
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span aria-hidden="true">X
+                                                        </span><span class="sr-only">
+                                                                 Close</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel" align="center" style="color:#300; font-size:20px">
+                            Educational Qualifications for {{ all_persons.RecruitedPost.Post }}</h4>
+                                                </div>
+
+                                         <div class="modal-body">
+                                                <label>GCE OL Examination</label>&nbsp &nbsp
+                                                    {% if sub_post %}
+                                            {% for olresult in sub_post %}
+                                                {% if olresult.QName == 'GCE OL' %}
+                                                    {% if olresult.Post.Post == all_persons.RecruitedPost.Post %}
+                                                    {{ olresult.Subject }} - {{ olresult.SubResult }},
+                                                        {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}<br>
+
+                                         <label>GCE AL Examination</label>&nbsp &nbsp
+                                                    {% if sub_post %}
+                                            {% for olresult in sub_post %}
+                                                {% if olresult.QName == 'GCE AL' %}
+                                                    {% if olresult.Post.Post == all_persons.RecruitedPost.Post %}
+                                                    {{ olresult.Subject }} - {{ olresult.SubResult }},
+                                                        {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}<br>
+
+                                         <label>Degree/ Diploma</label>&nbsp &nbsp
+                                                {% if deg_post %}
+                                                    {% for degree in deg_post %}
+                                                    {% if degree.Post.Post == all_persons.RecruitedPost.Post %}
+                                                        {{ degree.Degree.DegreeType.Type }} in {{ degree.Degree.DegreeField.Field }},&nbsp
+                                                    {% endif %}
+                                                    {% endfor %}
+
+                                                {% endif %}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            <div class="summary">
+
+                                <label for="university"><Strong>Tertiary Education:<br> </Strong></label>
+                                {% for tert in tertiary %}
+                                    {% if tert.Personal.id == all_persons.id %}
+                                        {{ tert.Degree.University }}<br>
+
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<label for="from">from </label>
+                                    {{ tert.YearStart}} to {{ tert.YearEnd }}<br>
+                               &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<label for="degree"><b>Degree: </b></label>
+                                    {{ tert.Degree.DegreeType }} in {{ tert.Degree.DegreeField }}<br>
+                               &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<label for="special"><b>Special: </b></label>
+                                    {{ tert.SpecialNotes }}<br>
+                                        {% endif %}
+                            {% endfor %}
+                            </div>
+
+                                <label>Secondary Education:</label><br><br>
+                            &nbsp &nbsp &nbsp<label>GCE O/L Examination</label>&nbsp &nbsp &nbsp &nbsp
+
+                                        {% if gce_ol %}
+                                            {% for result in gce_ol %}
+                                            {% if result.personal.id == all_persons.id %}
+                                                {% if result.QName == 'GCE OL' %}
+
+                                                    {{ result.Subject }} - {{ result.SubResult }},
+                                                {% endif %}
+                                            {% endif %}
+                                            {% endfor %}
+
+                                        {% endif %}<br>
+
+                            &nbsp &nbsp &nbsp<label>GCE A/L Examination</label>&nbsp &nbsp &nbsp &nbsp
+                                        {% if gce_ol %}
+                                            {% for result in gce_ol %}
+                                            {% if result.personal.id == all_persons.id %}
+                                                {% if result.QName == 'GCE AL' %}
+
+                                                    {{ result.Subject }} - {{ result.SubResult }},
+                                                {% endif %}
+                                            {% endif %}
+                                            {% endfor %}
+
+                                        {% endif %}
+                            </section>
+
+                            <section class="section summary-section">
+                                <hr>
+                                <h4 class="section-title"><i class="fa fa-briefcase" data-toggle="modal" data-target="#wrkQ"></i> Working Experience</h4>
+                                <hr>
+
+                            <div class="modal fade" id="wrkQ" tabindex="-1"
+                            role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header" id="lgheader">
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span aria-hidden="true">X
+                                                        </span><span class="sr-only">
+                                                                 Close</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel" align="center" style="color:#300; font-size:20px">
+                            Experience for {{ all_persons.RecruitedPost.Post }}</h4>
+                                                </div>
+
+                                         <div class="modal-body">
+                                                <label>Experience in </label>&nbsp &nbsp
+                                                    {% if exp_post %}
+                                            {% for exp in exp_post %}
+                                                    {% if exp.Post.Post == all_persons.RecruitedPost.Post %}
+                                                        {{ exp.ExPost.Post }} in  {{ exp.ExPost.Field }} for <b> {{ exp.Duration }} </b> years<br>
+                                                    {% endif %}
+                                            {% endfor %}
+                                                        {% else %}
+
+                                        {% endif %}<br>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                            <div class="summary">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Post</th>
+                                                <th>Company</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Field</th>
+                                                <th>Note</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% if experience %}
+                                    {% for exp in experience %}
+                                        {% if exp.Personal.id == all_persons.id %}
+                                            <tr>
+                                                <td>{{ exp.AltPost }}</td>
+                                                <td>{{ exp.Company }}</td>
+                                                <td>{{ exp.YearStart }}</td>
+                                                <td>{{ exp.YearEnd }}</td>
+                                                <td>{{ exp.Field }}</td>
+                                                <td>{{ exp.Notes }}</td>
+                                            </tr>
+                                            {% endif %}
+                                    {% endfor %}
+
+                                {% endif %}
+                                            </tbody>
+                                            </table>
+                                        </div>
+                            </div>
+                            </section>
+
+                            <section class="section summary-section">
+                                <hr>
+                                <h4 class="section-title"><i class="fa fa-laptop"></i> Skills</h4>
+                                <hr>
+                            <div class="summary">
+                                <ul>
+                                    {% if skills %}
+                                    {% for skill in skills %}
+                                        {% if skill.person.id == all_persons.id %}
+                                            <li>{{ skill.Skill }}<br>
+                                            &nbsp &nbsp &nbsp &nbsp{{ skill.Description }}</li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% endif %}
+
+                                </ul>
+                            </div>
+                            </section>
+
+                            <section class="section summary-section">
+                                <hr>
+                                <h4 class="section-title"><i class="fa fa-ra"></i> Awards and Achievements </h4>
+                                <hr>
+                            <div class="summary">
+                                <ul>
+                                    {% if awards %}
+                                    {% for award in awards %}
+                                        {% if award.Person.id == all_persons.id %}
+                                            <li>{{ award.Heading_1 }} &nbsp - &nbsp {{ award.Heading_2 }}<br>
+                                            &nbsp &nbsp &nbsp &nbsp {{ award.Notes }}</li>
+
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            </section>
+
+                            <section class="section summary-section">
+                                <hr>
+                                <h4 class="section-title"><i class="fa fa-puzzle-piece"></i> Extra Curricular Activities </h4>
+                                <hr>
+                            <div class="summary">
+                                <ul>
+                                    {% if extra %}
+                                        {% for ext in extra %}
+                                        {% if ext.person.id == all_persons.id %}
+                                            <li>{{ ext.Extracurricular }}<br>
+                                            &nbsp &nbsp &nbsp &nbsp {{ ext.Description }}</li>
+                                       {% endif %}
+                                        {% endfor %}
+
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            </section>
+
+
+
+                            <section class="section summary-section">
+                                <hr>
+                                <h4 class="section-title"><i class="fa fa-user"></i> Basic Information</h4>
+                                <hr>
+                            <div class="summary">
+                                <label for="FullName"><b>Full Name: </b></label>
+                                    {{ all_persons.FullName }}<br>
+                                <label for="DOB"><b>Date of Birth: </b></label>
+                                    {{ all_persons.DOB }}<br>
+                                <label for="NIC"><b>NIC: </b></label>
+                                    {{ all_persons.NIC }}<br>
+                                <label for="NIC"><b>Nationality: </b></label>
+                                    {{ all_persons.Nationality }}<br>
+                            </div>
+                            </section>
+
+                            </div>
+                            <div class="col-xs-3" id="side_bar">
+                                <div class="contact-container container-block">
+                                <img src="{{ all_persons.PImage }}" alt="{{ all_persons.FName }}" width="150" height="150" style="margin: 1%; color: #0b97c4">
+                            </div>
+                                <br><br><br><br>
+                            <div class="contact-container container-block">
+                            <ul class="list-unstyled contact-list">
+                                <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> {{ all_persons.Email }}</a></li>
+                                <li><br></li>
+                                <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> {{ all_persons.ContactNum }}</a></li>
+                                <li><br></li>
+                                <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> {{ all_persons.AddressLine1 }}<br> &nbsp &nbsp &nbsp{{ all_persons.AddressLine2 }}</a></li>
+                                <li><br></li>
+                                <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i> {{ all_persons.LinkedInProf }}</a></li>
+                                <li><br></li>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> {{ all_persons.FacebookProf }}</a></li>
+                            </ul>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

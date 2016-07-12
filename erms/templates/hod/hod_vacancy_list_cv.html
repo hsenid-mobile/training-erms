@@ -1,0 +1,36 @@
+{% extends "hod/index.html" %}
+        <!-- /col-3 -->
+{% block block_body %}
+           <div class="col-sm-9">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>Interview list</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                <form method="get">
+                    <table class="table table-striped">
+                        <thead class="thead-default">
+                        <tr>
+                            <th>Vacancy</th>
+                            <th># of Vacancies</th>
+                            <th>Select</th>
+                        </tr>
+                        </thead>
+                        {% for b in inter %}
+                        <tr>
+                            <th>{{ b.Post_Dept.Post.Post }}</th>
+                            <th>{{ b.NoOfPossitions }}</th>
+                            <th>
+                                <a class="btn btn-primary" href="/hod/hod_vacancy/test2/part2/inter_list/{{ b.id }}/">Select</a>
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

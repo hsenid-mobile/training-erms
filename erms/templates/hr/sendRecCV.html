@@ -1,0 +1,21 @@
+{% extends 'hr/index.html' %}
+{% load bootstrap %}
+
+{% block body %}
+    <div id="page-wrapper">
+    <div class="col-lg-2"></div>
+<form role="form" method="post" class="post-form" action="{% url 'sendRecCV' all_person.id %}">
+    <div class="col-lg-4">
+    {% csrf_token %}
+        {{ rec_dept|bootstrap }}
+    </div>
+
+<br>
+        <div class="row" align="center">
+            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+        </div>
+    </form>
+    </div>
+
+{% endblock %}
