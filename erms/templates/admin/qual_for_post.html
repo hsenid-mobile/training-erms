@@ -1,0 +1,56 @@
+{% extends "admin/index.html" %}
+{% load crispy_forms_tags %}
+{% load bootstrap %}
+{% block requiremnts %}
+    <div class="col-lg-12">
+                <!-- Large modal -->
+            {% for fields in qual %}
+                 <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Requirement for {{ fields.QName }}</div>
+                        <div class="panel-body">
+                                <h4>Number of As : {{ fieds.NoOfAs }}</h4>
+                                <h4>Number of As : {{ fieds.NoOfAs }}</h4>
+                                <h4>Number of Bs : {{ fieds.NoOfBs }}</h4>
+                                <h4>Number of Cs : {{ fieds.NoOfCs }}</h4>
+                        </div>
+                        <div class="panel-footer">
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+
+            <div class="col-lg-6">
+
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Add requirement</button>
+                <div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">New Requirements</h4>
+                      </div>
+                    <form method="post" role="form" action="/accounts/qualreq/{{ pid }}" >
+                      <div class="modal-body">
+
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {% for fields in deo_form %}
+                                    {{ fields|bootstrap }}
+                                {% endfor %}
+                            </div>
+                      </div>
+                      <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary">
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+{% endblock %}

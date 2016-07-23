@@ -1,0 +1,63 @@
+{% extends 'pages/index.html' %}
+{% load bootstrap %}
+{% block pages %}
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Interviews</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Interview Schedule
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                               
+                               <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Interview ID</th>
+                                            <th>Post</th>
+                                            <th># of Vacancies</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Venue</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for w in intvw %}
+                                        <tr>
+                                            <td>{{ w.id }}</td>
+                                            <td>{{ w.Vacancy.Post_Dept.Post.Post }}</td>
+                                            <td>{{ w.Vacancy.NoOfPossitions}}</td>
+                                            <td>{{ w.Date}}</td>
+                                            <td>{{ w.Time}}</td>
+                                            <td>{{ w.Venue}}</td>
+                                            <td><a class="btn btn-primary" href="/int/view_cv/{{ w.id }}/">View</a></td>
+                                        </tr>
+                                       {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+               
+            </div>
+           
+            
+                          
+                    </div>
+{% endblock %}

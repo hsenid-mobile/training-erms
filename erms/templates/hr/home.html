@@ -1,0 +1,165 @@
+{% extends 'hr/index.html' %}
+{% block title %}ERMS-HR-Home {% endblock %}
+
+{% block body %}
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Home</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+          </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-file-text fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">15</div>
+                                    <div>New CVs!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'received_CVs' %}">
+                            <div class="panel-footer">
+                                <span class="pull-left">View CVs</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-envelope fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">4</div>
+                                    <div>New Messages!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'messages' %}">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Messages</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">7</div>
+                                    <div>New Vacancies</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'vacancies' %}">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <div class="panel panel-blue">
+                        <div class="panel-heading">
+                            <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <ul class="timeline">
+                                <li>
+                                    <div class="timeline-badge"><i class="fa fa-check"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Technical Interview</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago</small>
+                                            </p>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Department - IT <br>
+                                            Date & Time- 3/6/2016 9.00am<br>
+                                            HOD- Mr. Perera<br>
+                                            Results - Pending</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title"> HR Interview</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 3 days ago</small>
+                                            </p>
+                                        </div>
+                                        <div class="timeline-body">                                                                                      											<p>Department - HRM <br>
+                                            Date & Time- 30/5/2016 9.00am<br>
+                                            HOD- Mrs. Alwis<br>
+                                            Results - Received</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title"> Added HODs</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 5 days ago</small>
+                                            </p>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>IT- Mr. Perera<br>
+                                            HTM- Mrs.Alwis<br>
+                                            Financial- Mr. Ranaweera<br>
+                                            Electronic - Mr. Mayadunne</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Technical 1 Interview</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Department - R&D <br>
+                                            Date & Time- 31/5/2016 9.00am<br>
+                                            HOD- Mr. Harsha<br>
+                                            Results - Received</p>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+{% endblock %}

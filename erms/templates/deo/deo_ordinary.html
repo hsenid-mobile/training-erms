@@ -1,0 +1,29 @@
+{% extends "deo/deo_index.html" %}
+{% load crispy_forms_tags %}
+{% block deo_form_OoA %}
+{% load bootstrap %}
+    <div>
+        <strong>{{ completion }}</strong>
+    </div>
+    <div class="main col-lg-8">
+        <form method="post" role="form" action="/ermsapp/DEO/ordinarylevel" >
+            {% csrf_token %}
+                <div class="col-lg-9">
+                    {{ deo_form_ol1.Subject|bootstrap }}
+                </div>
+                <div class="col-lg-3">
+                    {{ deo_form_ol1.SubResult|bootstrap }}
+                </div>
+                <br><br><br>
+                <div class="main col-lg-12">
+                    <input type="submit" class="btn btn-primary btn-block">
+                    <br>
+                </div>
+
+                <div class="main col-lg-12">
+                    <a href="/ermsapp/DEO/advancedqualresult"><input class="btn btn-success btn-block" value="Next"></a>
+                </div>
+
+
+        </form>
+{% endblock %}

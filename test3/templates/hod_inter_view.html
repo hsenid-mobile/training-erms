@@ -1,0 +1,89 @@
+{% extends "index.html" %}
+{% load bootstrap %}
+{% block block_body %}
+            <div class="col-sm-8">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>Interview Details:  {{ inter_obj.Vacancy }}</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <h3><b>Basic Details</b></h3><br>
+                            <label><strong>Time:</strong></label>
+                            {{ inter_obj.Time }}<br>
+                            <label><strong>Date:</strong></label>
+                            {{ inter_obj.Date }}<br>
+                            <label><strong>Venue:</strong></label>
+                            {{ inter_obj.Venue }}<br>
+                            <label><strong>Head of Department:</strong></label>
+                            {{ inter_obj.HOD }}<br>
+                            <label><strong>Vacancy:</strong></label>
+                            {{ inter_obj.Vacancy }}<br>
+                            <label><strong>Department:</strong></label>
+                            {{ inter_obj.Department }}<br>
+                            <label><strong>Type of Interview:</strong></label>
+                            {{ inter_obj.InterviewType }}<br>
+                            <hr>
+                            <h3><b>Interviewers Details</b></h3><br>
+                            <div class="table-responsive">
+                                 <table class="table table-striped">
+                                         <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    {% for b in viewer %}
+                                        <tr>
+                                            <th>{{ b.Interviewer.id }}</th>
+                                            <th>{{ b.Interviewer.username }}</th>
+                                            <th>{{ b.Interviewer.email }}</th>
+                                        </tr>
+                                    {% endfor %}
+                                 </table>
+                            </div>
+                            <hr>
+                            <h3><b>Curriculum Vitae's Details</b></h3><br>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    {% for b in cv %}
+                                        <tr>
+                                            <th>{{ b.Personal.id }}</th>
+                                            <th>{{ b.Personal.FName }}</th>
+                                            <th>{{ b.Personal.Email }}</th>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                            <hr>
+                            <h3><b>Review Details</b></h3><br>
+                                <label><strong>Head of Department Review:</strong></label>
+                                    {{ inter_obj.HOD_Review }}<br>
+                                <label><strong>Human Resource Review:</strong></label>
+                                    {{ inter_obj.HR_Review }}<br>
+                                <label><strong>Interviewer Review:</strong></label>
+                                    {{ inter_obj.Interviewer_Review }}<br>
+                                <label><strong>Interviewer Finish/Not:</strong></label>
+                                    {% if inter_obj.done == True %}
+                                        Finished<br>
+                                    {% else  %}
+                                        Unfinished<br>
+                                    {% endif %}
+                            <hr>
+                                <form method="post" action="/hod/hod_inter/hod_inter_overview/view/{{ inter_obj.id }}">
+                                    {% csrf_token %}
+                                    {{ form|bootstrap }}
+                                    <input type="submit" class="btn btn-success pull-right">
+                                </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

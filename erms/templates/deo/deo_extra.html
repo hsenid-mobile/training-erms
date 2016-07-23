@@ -1,0 +1,32 @@
+{% extends "deo/deo_index.html" %}
+{% load l10n %}
+{% load crispy_forms_tags %}
+{% block deo_form_extra %}
+{% load bootstrap %}
+        <div>
+        <strong>{{ completion }}</strong>
+        </div>
+        <div>
+        <strong>{{ name }}</strong>
+        </div>
+        <div id="Extracurricular">
+        <div class="main col-lg-6">
+            <form method="post" role="form" action="/ermsapp/DEO/extra_info" >
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for field in deo_form1 %}
+                        {{ field|bootstrap }}
+                    {% endfor %}
+                </div>
+                <div class="col-lg-12">
+                   <input type="submit" class="btn btn-primary btn-block">
+                </div>
+                <br>
+                <br>
+                <div class="col-lg-12">
+                   <a href="/ermsapp/DEO/sport_info"><input class="btn btn-success btn-block" value="Next"></a>
+                </div>
+            </form>
+        </div>
+        </div>
+{% endblock %}

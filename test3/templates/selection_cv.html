@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+        <!-- /col-3 -->
+{% block block_body %}
+           <div class="col-sm-9">
+            <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Status of CVs
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>CV list</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                <form method="get">
+                    <table class="table table-striped">
+                        <thead class="thead-default">
+                        <tr>
+                            <th>Name</th>
+                            <th>Field</th>
+                            <th>CV</th>
+
+                        </tr>
+                        </thead>
+                        {% for b in personal %}
+                        <tr>
+                            <th>{{ b.Personal.FName }}</th>
+                            <th>{{ b.Personal.Email }}</th>
+                            <th>
+                                <a class="btn btn-primary btn-sm" href="/hod/selection_profile/{{ b.id }}/">View</a>
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+        })
+    </script>
+{% endblock %}

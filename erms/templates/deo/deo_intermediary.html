@@ -1,0 +1,10 @@
+{% extends "deo/deo_index.html" %}
+{% load crispy_forms_tags %}
+{% block deo_form_degree %}
+{% load bootstrap %}
+        <div>
+        <strong>{{ completion }}</strong>
+        <a href="{{ url }}">Click here to move</a>
+        </div>
+
+{% endblock %}

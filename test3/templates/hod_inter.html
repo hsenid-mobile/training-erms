@@ -1,0 +1,83 @@
+{% extends "index.html" %}
+{% block block_body %}
+        <div class="col-sm-9">
+
+            <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> Interview Phase</strong></a>
+            <hr>
+
+            <div class="row">
+                <!-- center left-->
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-wrench pull-right"></i>
+                                    <h4>Create Interview</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                It's vary easy to create... Just try it.
+                            </div>
+                            <p>Create the Interviews belongs to your department.</p>
+                            <p>This section provide for you to create interviews that available vacancies, assign interviewers to interview, assign profiles to interview etc.</p>
+                            <a class="btn btn-primary pull-right" href="/hod/hod_vacancy/test/" role="button">Interview</a>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-user pull-right"></i>
+                                    <h4>Assign Interviewers</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+
+                            <p>Assign Interviewers to the Interviews.</p>
+                            <p>As Head of Department you can assign interviewers to inteterviews which you have been created.</p>
+                            <a class="btn btn-primary pull-right" href="/hod/hod_vacancy/test/part2/inter_list/" role="button">Assign</a>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>Overview</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                You can see... What have you done with this section'.
+                            </div>
+                            <p>You can see the ongoing interviews, schedule interviews,
+                              status of the interviews, history of the interviews.</p>
+                            <p>This section help you to understand how the entire interview process how happened, how will happen.</p>
+                            <a class="btn btn-primary pull-right" href="/hod/hod_inter/hod_pre_inter_overview/" role="button">Overview</a>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>Assign CV</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <p>Assign Interviewers to the Interviews.</p>
+                            <p>As Head of Department you can assign interviewers to inteterviews which you have been created.</p>
+                            <a class="btn btn-primary pull-right" href="/hod/hod_vacancy/test/part2/inter_list_cv/" role="button">Assign</a>
+                        </div>
+                    </div>
+
+                    </div>
+                    <!--/panel-->
+                </div>
+                <!--/col-span-6-->
+            </div>
+            <!--/row-->
+{% endblock %}

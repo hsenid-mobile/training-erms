@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% load crispy_forms_tags %}
+{% block block_body %}
+            <div class="col-sm-9">
+                <h2><b><u>Message Form</u></b></h2><br><br>
+                <form action="#" method="post">{% csrf_token %}
+                    {{ msg_form|crispy }}
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+
+            </div>
+{% endblock %}

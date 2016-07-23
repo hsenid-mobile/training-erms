@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block block_body %}
+            <div class="col-sm-9">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>Vacancy: {{ obj.id }}</h4>
+                            </div>
+                        </div>
+                    <div class="panel-body">
+                <form method="get">{% csrf_token %}
+                    <label><strong>Post:</strong></label>
+                    {{ obj.Post_Dept.Post }}<br>
+                    <label><strong>Department:</strong></label>
+                    {{ obj.Post_Dept.Dept }}<br>
+                    <label><strong>Date of Publish:</strong></label>
+                    {{ obj.DateOfPublish }}<br>
+                    <label><strong>Closing Date:</strong></label>
+                    {{ obj.ClosingDate }}<br>
+                    <label><strong>Number of Positions:</strong></label>
+                    {{ obj.NoOfPossitions }}<br>
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

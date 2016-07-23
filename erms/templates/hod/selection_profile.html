@@ -1,0 +1,35 @@
+{% extends "hod/index.html" %}
+{% load bootstrap %}
+{% block block_body %}
+            <div class="col-md-9">
+                <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <i class="fa fa-paper-plane pull-right"></i>
+                            <h3><strong>{{ cv.Personal.FullName }}</strong></h3>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form method="post" action="">
+                            <h4><b>Interviewers and their rates</b></h4><br>
+                            {% for x in comment %}
+                            <div class="list-group-item">
+                                <label><strong>Name:</strong></label>
+                                    {{ x.Interviewer }}<br>
+                                <label><strong>Comments:</strong></label>
+                                    {{ x.Comment }}<br>
+                                <label><strong>Rates:</strong></label>
+                                    {{ x.Rate }}<br>
+                            </div>
+                            {% endfor %}
+                            <hr>
+                                {{ form.Status|bootstrap }}<br>
+                            <button class="btn btn-success" type="button" href="/hod/selection_profile/{{ cv.id }}/">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

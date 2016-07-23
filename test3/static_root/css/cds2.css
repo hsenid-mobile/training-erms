@@ -1,0 +1,31 @@
+@font-face {
+            font-family: 'DK Crayon Crumble' ,TrueType font;
+            src: url(dk-crayon-crumble.ttf);
+        }
+
+        h2 {
+            color: 'black';
+            font-family: 'DK Crayon Crumble';
+            font-size: 60px; font-weight: 800;
+            line-height: 36px;
+            margin: 10px 10px 24px;
+            text-align: center;
+        }
+
+        <!--@font-face {-->
+            <!--font-family: 'Remachine Script Personal Use' ,TrueType font;-->
+            <!--src: url(RemachineScript_PERSONAL_USE_ONLY.ttf);-->
+        <!--}-->
+
+        <!--h2 {-->
+            <!--color: 'black';-->
+            <!--font-family: 'Remachine Script Personal Use';-->
+            <!--font-size: 60px; font-weight: 800;-->
+            <!--line-height: 36px;-->
+            <!--margin: 10px 10px 24px;-->
+            <!--text-align: center;-->
+        <!--}-->
+
+<!--.form-signin-heading {
+            font-size: 30px;
+        }-->

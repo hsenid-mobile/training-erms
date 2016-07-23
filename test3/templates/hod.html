@@ -1,0 +1,122 @@
+{% extends "index.html" %}
+        <!-- /col-3 -->
+{% block block_body %}
+            <div class="col-sm-9">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Dashboard <small>Phase of Head of Department</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Dashboard
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="fa fa-info-circle"></i>
+                            <strong>As a Head of Department you can assign new interviews in interview
+                            section. In CV's section you can view the cv's that assigned<br>&nbsp;  &nbsp; by the HR Department.
+                            You can view, comment and rate on the profiles.</strong>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-users fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{ intr_count }}</div>
+                                        <div>New Interviews</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/hod/hod_inter/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Interview</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-paperclip fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{ cv_count }}</div>
+                                        <div>New CVs!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/hod/hod_cv/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Curriculum Vitae</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-user-plus fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{ vcncy_count }}</div>
+                                        <div>New Vacancys!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/hod/post_list/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Vacancy</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-bars fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{ msg_count }}</div>
+                                        <div>Selection!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/hod/selection/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Selections</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

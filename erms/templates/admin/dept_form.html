@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends "admin/index.html" %}
+{% load bootstrap %}
+{% block post %}
+    <form action ="/ermsapp/Department/" method="POST" >
+        {% csrf_token %}
+        {% for field in DepartmentForm %}
+            {{ field|bootstrap }}
+        {% endfor %}
+        <input type="submit" class="btn btn-primary btn-block"  value="Next"/>
+    </form>
+{% endblock %}

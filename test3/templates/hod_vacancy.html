@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% load bootstrap %}
+{% block block_body %}
+
+            <div class="col-sm-9">
+                 <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="glyphicon glyphicon-wrench pull-right"></i>
+                                <h4>Vacancy form</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form action="" method="post">{% csrf_token %}
+                                <div class="col-sm-6">
+                                    {{ v_form.NoOfPossitions|bootstrap }}
+{#                                    {{ v_form.N|bootstrap }}#}
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    {{ v_form.DateOfPublish|bootstrap }}
+                                    {{ v_form.ClosingDate|bootstrap }}
+                                </div>
+                            </form>
+                        </div>
+                 </div>
+            </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "deo/deo_index.html" %}
+{% block deo_form_experience %}
+{% load bootstrap %}
+        <div>
+        <strong>{{ completion }}</strong>
+        </div>
+        <div>
+        <strong>{{ name }}</strong>
+        </div>
+        <div id="Experience">
+        <div class="main col-lg-6">
+            <form method="post" role="form" action="/ermsapp/DEO/experience_info" >
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ deo_form.Post|bootstrap }}
+                    {{ deo_form.AltPost|bootstrap }}
+                    {{ deo_form.Field|bootstrap }}
+                    {{ deo_form.Company|bootstrap }}
+                    {{ deo_form.Duration|bootstrap }}
+                    <div class="col-lg-6">{{ deo_form.YearStart|bootstrap }}</div>
+                    <div class="col-lg-6">{{ deo_form.YearEnd|bootstrap }}</div>
+                    {{ deo_form.Notes|bootstrap }}
+                </div>
+                <input type="submit" class="btn btn-primary btn-block">
+
+                <br>
+                <a href="/ermsapp/DEO/spcl_achvmnt_info"><input class="btn btn-success btn-block"Next value="Next"></a>
+
+            </form>
+        </div>
+        </div>
+{% endblock %}

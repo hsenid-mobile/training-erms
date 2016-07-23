@@ -1,0 +1,54 @@
+{% extends "hod/index.html" %}
+        <!-- /col-3 -->
+{% block block_body %}
+            <div class="col-sm-8">
+                 <div class="panel panel-default">
+                     <div class="panel-heading">
+                         <div class="panel-title">
+                             <i class="fa fa-wrench pull-right"></i>
+                             <h4>Select CV</h4>
+                         </div>
+                     </div>
+                     <div class="panel-body">
+                        <form action="" method="post">{% csrf_token %}
+                             <div class="table-responsive">
+                                 <table class="table table-striped">
+                                     <thead class="thead-default">
+                                     <tr>
+                                         <th>NIC</th>
+                                         <th>FName</th>
+                                         <th>Email</th>
+                                         <th>View</th>
+                                         <th>Select CV</th>
+                                     </tr>
+                                     </thead>
+                                     {% for b in cv %}
+                                     <tr>
+                                         <th>{{ b.Personal.NIC }}</th>
+                                         <th>{{ b.Personal.FullName }}</th>
+                                         <th>{{ b.Personal.Email }}</th>
+                                         <th><a class="btn btn-warning" href="/hod/hod_cv/{{ b.Personal.id }}/">View</a></th>
+                                         <th>
+                                             <a type="button" class="btn btn-primary" href="/hod/hod_vacancy/test/part2/inter_list_cv/{{ piid }}/{{ inter.id }}/{{ b.id }}/">Assign</a>
+                                         </th>
+                                     </tr>
+                                     {% endfor %}
+                                    <tr>
+                                         <th></th>
+                                         <th></th>
+                                         <th></th>
+                                         <th></th>
+                                         <th><a type="submit" class="btn btn-success" href="/hod/hod_inter/hod_inter_overview/">Done</a></th>
+                                         <th><a type="button" class="btn btn-success" href="/hod//hod/hod_vacancy/test/succs/{{ piid }}/{{ inter.id }}//">Done</a></th>
+
+                                     </tr>
+                                 </table>
+                                    <hr>
+
+                             </div>
+                         </form>
+                     </div>
+                 </div>
+            </div>
+        </div>
+{% endblock %}

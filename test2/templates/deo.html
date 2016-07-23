@@ -1,0 +1,22 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Entry Operator</title>
+     <link rel="stylesheet" href="{% static  'core_bootstrap/css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'core_bootstrap/css/bootstrap-theme.min.css' %}" >
+    <script src="{% static 'core_bootstrap/js/bootstrap.min.js' %}"></script>
+    <!--<link rel="stylesheet" href="{% static 'css/cds.css' %}">-->
+</head>
+<body>
+
+    <h1 class="header"><b>Data Entry Form</b></h1>
+    <form class="col-xs-4" method="POST" action=" ">{% csrf_token %}
+        {{ deoForm|crispy }}
+        <button class="btn btn-md btn-primary" type="submit">Save</button>
+    </form>
+
+</body>
+</html>

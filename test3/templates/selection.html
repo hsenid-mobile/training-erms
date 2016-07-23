@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+        <!-- /col-3 -->
+{% block block_body %}
+
+    <div class="col-sm-9">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <i class="fa fa-paper-plane pull-right"></i>
+                        <h4>Select Interviews</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <strong>Select Interviews</strong>
+                    <a class="btn btn-success pull-right" href="/hod/selection_inter/"><i class="fa fa-arrow-right"></i> </a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <i class="fa fa-paper-plane pull-right"></i>
+                        <h4>Current Status</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form method="get" action="">
+
+                        <label><strong>Passes:</strong></label>
+                        <div class="progress">
+                            <div class="progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                                &nbsp;  {{ p }}
+                            </div>
+                        </div><br>
+                        <label><strong>Fails:</strong></label>
+                        <div class="progress">
+                            <div class="progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:30%">
+                                &nbsp;  {{ f }}
+                            </div>
+                        </div><br>
+                        <label><strong>On-Holds:</strong></label>
+                        <div class="progress">
+                            <div class="progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+                                &nbsp;  {{ o }}
+                            </div>
+                        </div><br>
+                </div>
+            </div>
+            <hr>
+            </form>
+        </div>
+
+
+
+{% endblock %}

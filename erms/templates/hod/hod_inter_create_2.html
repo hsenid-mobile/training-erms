@@ -1,0 +1,51 @@
+{% extends "hod/index.html" %}
+        <!-- /col-3 -->
+{% block block_body %}
+
+            <div class="col-sm-9">
+                 <div class="panel panel-default">
+                     <div class="panel-heading">
+                         <div class="panel-title">
+                             <i class="fa fa-wrench pull-right"></i>
+                             <h4>Interviewer List</h4>
+                         </div>
+                     </div>
+                     <div class="panel-body">
+                         <form action="" method="get">{% csrf_token %}
+                         <table class="table table-striped">
+                             <thead class="thead-default">
+                                <tr>
+                                    <th>User</th>
+                                    <th>Post</th>
+                                    <th>Department</th>
+                                    <th>Assign</th>
+                                </tr>
+                             </thead>
+                            {% for b in viewer %}
+                                <tr>
+                                    <th>{{ b.User }}</th>
+                                    <th>{{ b.Post }}</th>
+                                    <th>{{ b.Department }}</th>
+                                    <th>
+                                        <a type="submit" class="btn btn-primary" href="/hod/hod_vacancy/test/part2/inter_list/{{ inter.id }}/{{ b.id }}">Add</a>
+                                    </th>
+                                </tr>
+                            {% endfor %}
+                            </table>
+                         </form>
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
+                                    <div class="col-lg-6">
+                                        <a type="button" class="btn btn-success btn-block" href="/hod/hod_vacancy/test/succs/{{ inter.id }}/">Add Cvs</a>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <a class="btn btn-success btn-block" href="/hod/hod_inter/hod_inter_overview/" id="myButton">Done</a>
+                                    </div>
+                            </div>
+
+
+                     </div>
+                 </div>
+            </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'hr/index.html' %}
+{% load bootstrap %}
+
+{% block body %}
+    <div id="page-wrapper">
+    <br><br><br><br>
+          &nbsp &nbsp &nbsp &nbsp<p style="font-size: large"><i class="fa fa-check fa-fw" style="color: #41a646"></i> A new post has been created successfully!</p>
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<div class="btn btn-default btn-xs"><a href="{% url 'new_post' %}">Continue</a> </div>
+    <div class="btn btn-default btn-xs"><a href="{% url 'home' %}">Home</a> </div>
+    </div>
+{% endblock %}

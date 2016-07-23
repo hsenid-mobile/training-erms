@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'myapp',
 ]
 
@@ -77,10 +78,10 @@ WSGI_APPLICATION = 'test1.wsgi.application'
 
 DATABASES = {
     'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test1',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'teat1_db',
+        'USER': 'myuser',
+        'PASSWORD': 'test',
         'HOST': '127.0.0.1',
     }
 }
@@ -124,6 +125,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, "static_files")
-# )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    'static_files',
+)
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

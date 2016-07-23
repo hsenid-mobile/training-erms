@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+        <!-- /col-3 -->
+{% block block_body %}
+        </div>
+            <div class="col-sm-9">
+                <div class="jumbotron">
+                    {% if dsc == True %}
+                        <h2><b>Well Done!!!</b></h2>
+                        <p>You sent a message successfully.</p>
+                        <div class="btn btn-default" role="group">
+                            <a href="/hod/hod_msg/send/" role="button">Back</a>
+                        </div>
+                    {% else %}
+                         <h2><b>Something went wrong!</b></h2>
+                        <p>{{ error }}</p>
+                        <div class="btn btn-default" role="group">
+                            <a href="/hod/hod_msg/send/" role="button">Back</a>
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

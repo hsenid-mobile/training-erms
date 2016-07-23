@@ -1,63 +1,120 @@
 from django import forms
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Field
-from .models import PersonInfo, Education, CreatUser
+from bootstrap3_datetime.widgets import DateTimePicker
+from datetimewidget.widgets import DateTimeWidget
+from django.contrib.auth.models import User
+from ermsapp.models import *
 
-#for Login page
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+class TimeInput(forms.TimeInput):
+    input_type = 'time'
+
+
+class PersonForm(forms.ModelForm):
+    class Meta:
+        model = Personal
+        fields = ['NIC', 'FName', 'LName', 'FullName', 'DOB',
+                  'AddressLine1', 'ContactNum', 'Objective', 'Interests',
+                  'Email', 'FacebookProf', 'DateRecieved',
+                  'PersonalHighlight', 'LinkedInProf', 'Objective'
+                  ]
+        exclude = ['InterviewNo']
+
+
+class InterviewForm(forms.ModelForm):
+    Time = forms.TimeField(widget=TimeInput())
+    Date = forms.DateField(widget=DateInput())
+
+    class Meta:
+        model = Interview
+        fields = ['Time', 'Date', 'Venue', 'InterviewType']
+
+class InterviewForm2(forms.ModelForm):
+
+    class Meta:
+        model = Interview_Interviewer
+        fields = ['Interviewer', 'Interview']
+
+
+class ExperienceForm(forms.ModelForm):
+
+    class Meta:
+        model = Experience
+        fields = ['Post', 'Field', 'Duration', 'Company',
+                  'AltPost', 'YearStart', 'YearEnd', 'Notes']
+        exclude = ['Personal']
+
+
+class SelectStatusForm(forms.ModelForm):
+    class Meta:
+        model = Personal_Interview
+        fields = ['Status']
+        exclude = ['Personal', 'Interview']
+
+
+class PersonInterForm(forms.ModelForm):
+
+    class Meta:
+        model = Personal_Interview
+        fields = ['Personal', 'Interview']
+
+
+class RecruitForm(forms.ModelForm):
+    class Meta:
+        model = Personal
+        fields =('RecruitedPost',)
+
+
+class SubQualificationForm(forms.ModelForm):
+
+    class Meta:
+        model = SubQualification
+        fields = ['QName', 'Subject', 'Result', 'SubResult', 'QType', 'SpecialNotes']
+        exclude = ['Personal']
+
+
+class SpecializedAreaForm(forms.ModelForm):
+    class Meta:
+        model = SpecializedArea
+        fields = ['SpecializedArea']
+
+
+class VacancyForm(forms.ModelForm):
+    DateOfPublish = forms.DateField(widget=DateInput())
+    ClosingDate = forms.DateField(widget=DateInput())
+    # Post_Dept = models.ForeignKey(lable="Post")
+
+    class Meta:
+        model = Vacancy
+        fields = ['NoOfPossitions', 'DateOfPublish', 'ClosingDate']
+        exclude = ['done', 'NoOfIntDone', 'Post_Dept']
+
+
+class HodReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = Interview
+        fields = ['HOD_Review', 'done']
+        exclude = ['NoOfPasses', 'NoOfFails', 'NoOfOnHolds', 'Interviewer_Review', 'HR_Review',
+                   'Time', 'Date', 'Venue', 'HOD', 'Interviewers', 'Vacancy', 'Department', 'InterviewType']
+
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+       model = Messages
+       fields = ('Reciever', 'MsgCont')
+
+
 class LoginForm(forms.Form):
-    username = forms.CharField(label="Username", required=None) #widget=forms.widget.TextInput
-    password = forms.CharField(label="Password", required=None ) #widget=forms.widget.PasswordInput
-    remember = forms.BooleanField(label="Remember Me?")
-    helper = FormHelper()
-    helper.form_method = 'POST'
-    helper.add_input(Submit('login', 'login', css_class='btn-primary'))
+    username = forms.CharField(max_length=100)
+    password = forms.CharField(widget=forms.PasswordInput)
+    remember_me = forms.BooleanField()
+
+
+class SubForm(forms.ModelForm):
     class Meta:
-        fields = ['username', 'password']
-
-
-#Registration Form
-# class RegistrationForm(forms.ModelForm):
-#       class Meta:
-#         model = CreatUser
-#         password2 = password2 = forms.CharField(label="password (again)") #widget=forms.widget.PasswordInput,
-#         fields = ['username', 'password', 'password2']
-#
-#       def clean(self):
-#         cleaned_data = super(RegistrationForm, self).clean()
-#         if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data:
-#             if self.cleaned_data['password1'] != self.cleaned_data['password2']:
-#                 raise forms.ValidationError("Passwords don't match. Please enter both fields again.")
-#         return self.cleaned_data
-
-#for deo page
-class PersonInfoForm(forms.ModelForm):
-    class Meta:
-        model = PersonInfo
-        fields = ['firstName','lastName','email','address','age','gender','telephone']
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        email_base, provider = email.split("@")
-        domain, extension = provider.spit('.')
-        if not extension == "com" :
-            raise forms.ValidationError("Enter correct type of email")
-
-    def clean_age(self):
-        age = self.clean_data.get('age')
-        if not age > 0 :
-            raise forms.ValidationError("Enter possible age")
-
-class EducationForm(forms.Form):
-    class Met:
-        model = Education
-        fields = ["university", "degree", "average_gpa", "from_year", "to_year",  "description",
-                  "secondary_education", "gca_al_stream", "gca_ol_stream"]
-
-# class UserForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#
-# class UserProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = UserProfile
-#         exclude = ['user']
+        model = Post_Dept
+        fields = ['Post', 'Dept']

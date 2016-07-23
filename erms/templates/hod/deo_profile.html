@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profiles</title>
+</head>
+<body>
+        {% for item in profile_form %}
+            <li><a href="/cv/{{ item.NIC }}/"> {{ item.FName }}</a></li>
+        {% endfor %}
+</body>
+</html>

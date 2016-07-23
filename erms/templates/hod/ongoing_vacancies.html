@@ -1,0 +1,42 @@
+{% extends "hod/index.html" %}
+{% block block_body %}
+
+           <div class="col-sm-9">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="fa fa-paper-plane pull-right"></i>
+                                <h4>Vacancy List</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                <form method="get">
+                    <table class="table table-striped">
+                        <thead class="thead-default">
+                        <tr>
+                            <th>Post</th>
+                            <th>Field</th>
+                            <th># of Vacancies</th>
+                            <th># of Interviews</th>
+                            <th>View</th>
+                        </tr>
+                        </thead>
+                        {% for b in vacancies %}
+                        <tr>
+                            <th>{{ b.Post_Dept.Post }}</th>
+                            <th>{{ b.Post.Field }}</th>
+                            <th>{{ b.NoOfPossitions }}</th>
+                            <th>{{ b.NoOfIntDone }}/{{ b.Post_Dept.Post.NoOfInterviews }}</th>
+                            <th>
+                                <a class="btn btn-primary" href="/hod/hod_recruit1/{{ b.id }}">View</a>
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    {{ count }}
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

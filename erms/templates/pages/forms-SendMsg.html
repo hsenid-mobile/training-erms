@@ -1,0 +1,47 @@
+{% extends 'pages/index.html' %}
+{% load bootstrap %}
+{% block pages %}
+
+    <div id="page-wrapper" xmlns="http://www.w3.org/1999/html">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Messaging</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="panel panel-default">
+                        <div class =" panel-heading">
+                             <div class =" panel-title">
+                                 <h4>Send New Message </h4>
+                                 </div>
+                            </div>
+
+                        </div>
+                        <form  method="post" action="../../int/send_msg/">
+                            {% csrf_token %}
+                            <div class = "table-responsive">
+                                {{ msg_form|bootstrap }}
+                            </div>
+                                        <button type="submit" class="btn btn-default" data-toggle="modal" data-target="#modal-1">Send</button>
+                                            <div class="modal" id="modal-1">
+                                                <div class="modal-dialog">
+                                            <div class= "modal-content">
+                                                <div class="modal-header">
+{#                                                    <button type="submit" class = "close" data-dismiss="modal"> &times;</button>#}
+                                                      <h3 class="modal-title">Message Sent Successfully</h3>
+                                                </div>
+                                             </div>
+                                            </div>
+                                        </div>
+                                        <button type="reset" class="btn btn-default">Reset</button>
+
+                        </form>
+
+                </div>
+            </div>
+    </div>
+{% endblock %}
