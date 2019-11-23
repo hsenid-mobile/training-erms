@@ -3,6 +3,17 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
 from .models import PersonInfo, Education, SampleMode
 
+# Adding containerrize form to the erms
+class SomeForm:
+    def __init__(self):
+        self.contained = True
+        self.deployed = False
+        self.debugModeOn = True
+
+    def __rper__(self):
+        print('some')
+
+
 #for Login page
 class LoginForm(forms.Form):
     username = forms.CharField(label="Username", required=None) #widget=forms.widget.TextInput
